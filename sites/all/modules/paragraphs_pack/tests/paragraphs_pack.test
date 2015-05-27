@@ -1,0 +1,476 @@
+<?php
+
+/**
+ * @file
+ * Paragraphs pack primary module's tests.
+ */
+
+/**
+ * Test Case for Paragraphs pack primary module.
+ */
+class ParagraphsPackTestCase extends DrupalWebTestCase {
+
+  // Paragraph bundle name used for testing.
+  public $paragraph_bundle_name;
+
+  /**
+   * Give display information to the SimpleTest system.
+   *
+   * getInfo() returns a keyed array of information for SimpleTest to show.
+   *
+   * It's a good idea to organize your tests consistently using the 'group'
+   * key.
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Paragraphs pack tests',
+      'description' => 'Tests: paragraph pack API.',
+      'group' => 'Paragraphs pack',
+    );
+  }
+
+  /**
+   * Set up the test environment.
+   */
+  public function setUp() {
+    // Setup variables.
+    $this->paragraph_bundle_name = 'pp_test_bundle';
+
+    // We call parent::setUp() with the list of modules we want to enable.
+    parent::setUp('paragraphs_pack', 'entityreference');
+
+    // Call tested function for paragraph bundle creation.
+    paragraphs_pack_create_paragraph($this->paragraph_bundle_name, 'Paragraph test bundle');
+  }
+
+  /**
+   * Test function for paragraph bundle creation.
+   */
+  public function testParagraphsPackParagraphBundleCreation() {
+    $paragraph_bundle_loaded = (paragraphs_bundle_load($this->paragraph_bundle_name) != FALSE);
+    $this->assertTrue($paragraph_bundle_loaded, t('The function for paragraph bundle creation works properly.'));
+  }
+
+  /**
+   * Test function for field title creation.
+   */
+  public function testParagraphsPackFieldTitleCreation() {
+    // Run function that's being tested.
+    $field = paragraphs_pack_get_field_title();
+
+    // Test field existence.
+    $field_exists = !empty($field);
+    $this->assertTrue($field_exists, t('Field was created successfully.'));
+
+    $field_info = field_info_field($field['field_name']);
+
+    $field_info_exists = !empty($field_info);
+    $this->assertTrue($field_info_exists, t('Field was created successfully.'));
+
+    // Test field settings.
+    if ($field_info_exists) {
+      $this->assertEqual($field_info['field_name'], PP_FIELD_TITLE);
+      $this->assertEqual($field_info['type'], 'text');
+      $this->assertEqual($field_info['entity_types'], array(PP_PARAGRAPH_TYPE));
+    }
+  }
+
+  /**
+   * Test function for field title instance creation.
+   */
+  public function testParagraphsPackFieldTitleInstanceCreation() {
+    $field_label = 'Test title';
+
+    // Run function that's being tested.
+    paragraphs_pack_add_field_title($this->paragraph_bundle_name, $field_label);
+
+    // Test field instance existence.
+    $field = paragraphs_pack_get_field_title();
+    $instance_info = field_info_instance(PP_PARAGRAPH_TYPE, $field['field_name'], $this->paragraph_bundle_name);
+    $instance_exists = !empty($instance_info);
+    $this->assertTrue($instance_exists, t('Instance was created successfully.'));
+
+    // Test field instance settings.
+    if ($instance_exists) {
+      $this->assertEqual($instance_info['field_name'], $field['field_name']);
+      $this->assertEqual($instance_info['entity_type'], PP_PARAGRAPH_TYPE);
+      $this->assertEqual($instance_info['bundle'], $this->paragraph_bundle_name);
+      $this->assertEqual($instance_info['label'], $field_label);
+      $this->assertEqual($instance_info['widget']['type'], 'text_textfield');
+      $this->assertEqual($instance_info['settings']['text_processing'], 0);
+      $this->assertEqual($instance_info['settings']['user_register_form'], FALSE);
+
+      // Test display settings.
+      $display = array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+        ),
+        'paragraphs_editor_preview' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+        ),
+      );
+
+      $display_difference = $this->array_diff_assoc_deep($display, $instance_info['display']);
+      $this->assertTrue(empty($display_difference), t('Display contains all specified settings. Differences (print_r) %differences', array('%differences' => print_r($display_difference, TRUE))));
+    }
+  }
+
+  /**
+   * Test function for field body creation.
+   */
+  public function testParagraphsPackFieldBodyCreation() {
+    // Run function that's being tested.
+    $field = paragraphs_pack_get_field_body();
+
+    // Test field existence.
+    $field_exists = !empty($field);
+    $this->assertTrue($field_exists, t('Field was created successfully.'));
+
+    $field_info = field_info_field($field['field_name']);
+
+    $field_info_exists = !empty($field_info);
+    $this->assertTrue($field_info_exists, t('Field was created successfully.'));
+
+    // Test field settings.
+    if ($field_info_exists) {
+      $this->assertEqual($field_info['field_name'], PP_FIELD_BODY);
+      $this->assertEqual($field_info['type'], 'text_long');
+      $this->assertEqual($field_info['entity_types'], array(PP_PARAGRAPH_TYPE));
+    }
+  }
+
+  /**
+   * Test function for field body instance creation.
+   */
+  public function testParagraphsPackFieldBodyInstanceCreation() {
+    $field_label = 'Test body';
+
+    // Run function that's being tested.
+    paragraphs_pack_add_field_body($this->paragraph_bundle_name, $field_label);
+
+    // Test field instance existence.
+    $field = paragraphs_pack_get_field_body();
+    $instance_info = field_info_instance(PP_PARAGRAPH_TYPE, $field['field_name'], $this->paragraph_bundle_name);
+    $instance_exists = !empty($instance_info);
+    $this->assertTrue($instance_exists, t('Instance was created successfully.'));
+
+    // Test field instance settings.
+    if ($instance_exists) {
+      $this->assertEqual($instance_info['field_name'], $field['field_name']);
+      $this->assertEqual($instance_info['entity_type'], PP_PARAGRAPH_TYPE);
+      $this->assertEqual($instance_info['bundle'], $this->paragraph_bundle_name);
+      $this->assertEqual($instance_info['label'], $field_label);
+      $this->assertEqual($instance_info['settings']['display_summary'], TRUE);
+
+      // Test widget settings.
+      $widget = array(
+        'module' => 'text',
+        'settings' => array(
+          'rows' => 5,
+        ),
+        'type' => 'text_textarea',
+      );
+
+      $widget_difference = $this->array_diff_assoc_deep($widget, $instance_info['widget']);
+      $this->assertTrue(empty($widget_difference), t('Widget contains all specified settings. Differences (print_r) %differences', array('%differences' => print_r($widget_difference, TRUE))));
+
+      // Test display settings.
+      $display = array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+        ),
+        'paragraphs_editor_preview' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+        ),
+      );
+
+      $display_difference = $this->array_diff_assoc_deep($display, $instance_info['display']);
+      $this->assertTrue(empty($display_difference), t('Display contains all specified settings. Differences (print_r) %differences', array('%differences' => print_r($display_difference, TRUE))));
+    }
+  }
+
+  /**
+   * Test function for field items creation.
+   */
+  public function testParagraphsPackFieldItemsCreation() {
+    $target_type = 'node';
+
+    // Run tested function.
+    $field = paragraphs_pack_get_field_items($target_type);
+
+    // Test field existence.
+    $field_exists = !empty($field);
+    $this->assertTrue($field_exists, t('Field was created successfully.'));
+
+    $field_info = field_info_field($field['field_name']);
+
+    $field_info_exists = !empty($field_info);
+    $this->assertTrue($field_info_exists, t('Field was created successfully.'));
+
+    // Test field settings.
+    if ($field_info_exists) {
+      $this->assertEqual($field_info['field_name'], PP_FIELD_ITEMS . '_' . $target_type);
+      $this->assertEqual($field_info['type'], 'entityreference');
+      $this->assertEqual($field_info['entity_types'], array(PP_PARAGRAPH_TYPE));
+      $this->assertEqual($field_info['cardinality'], FIELD_CARDINALITY_UNLIMITED);
+      $this->assertEqual($field_info['settings']['target_type'], $target_type);
+    }
+  }
+
+  /**
+   * Test function for field items instance creation.
+   */
+  public function testParagraphsPackFieldItemsInstanceCreation() {
+    $field_label = 'Test body';
+    $target_type = 'node';
+
+    // Run tested function.
+    paragraphs_pack_add_field_items($this->paragraph_bundle_name, $field_label, $target_type);
+
+    // Test field instance existence.
+    $field = paragraphs_pack_get_field_items($target_type);
+    $instance_info = field_info_instance(PP_PARAGRAPH_TYPE, $field['field_name'], $this->paragraph_bundle_name);
+    $instance_exists = !empty($instance_info);
+    $this->assertTrue($instance_exists, t('Instance was created successfully.'));
+
+    // Test field instance settings.
+    if ($instance_exists) {
+      $this->assertEqual($instance_info['field_name'], $field['field_name']);
+      $this->assertEqual($instance_info['entity_type'], PP_PARAGRAPH_TYPE);
+      $this->assertEqual($instance_info['bundle'], $this->paragraph_bundle_name);
+      $this->assertEqual($instance_info['label'], $field_label);
+      $this->assertEqual($instance_info['widget']['type'], 'entityreference_autocomplete');
+
+      // Test display settings.
+      $display = array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'paragraphs_pack',
+          'settings' => array(
+            'entity_type' => $target_type,
+          ),
+          'type' => PP_FORMATTER_VIEW_MODE,
+        ),
+        'paragraphs_editor_preview' => array(
+          'label' => 'hidden',
+          'module' => 'paragraphs_pack',
+          'settings' => array(
+            'entity_type' => $target_type,
+          ),
+          'type' => PP_FORMATTER_VIEW_MODE,
+        ),
+      );
+
+      $display_difference = $this->array_diff_assoc_deep($display, $instance_info['display']);
+      $this->assertTrue(empty($display_difference), t('Display contains all specified settings. Differences (print_r) %differences', array('%differences' => print_r($display_difference, TRUE))));
+    }
+  }
+
+  /**
+   * Test function for field view mode creation.
+   */
+  public function testParagraphsPackFieldViewModeCreation() {
+    // Run tested function.
+    $field = paragraphs_pack_get_field_view_mode();
+
+    // Test field existence.
+    $field_exists = !empty($field);
+    $this->assertTrue($field_exists, t('Field was created successfully.'));
+
+    $field_info = field_info_field($field['field_name']);
+
+    $field_info_exists = !empty($field_info);
+    $this->assertTrue($field_info_exists, t('Field was created successfully.'));
+
+    // Test field settings.
+    if ($field_info_exists) {
+      $this->assertEqual($field_info['field_name'], PP_FIELD_VIEW_MODE);
+      $this->assertEqual($field_info['type'], PP_FIELD_TYPE_VIEW_MODE);
+      $this->assertEqual($field_info['entity_types'], array(PP_PARAGRAPH_TYPE));
+      $this->assertEqual($field_info['cardinality'], 1);
+    }
+  }
+
+  /**
+   * Test function for field view mode instance creation.
+   */
+  public function testParagraphsPackFieldViewModeInstanceCreation() {
+    $field_label = 'Test body';
+
+    // Run tested function.
+    paragraphs_pack_add_field_view_mode($this->paragraph_bundle_name, $field_label);
+
+    // Test field instance existence.
+    $field = paragraphs_pack_get_field_view_mode();
+    $instance_info = field_info_instance(PP_PARAGRAPH_TYPE, $field['field_name'], $this->paragraph_bundle_name);
+    $instance_exists = !empty($instance_info);
+    $this->assertTrue($instance_exists, t('Instance was created successfully.'));
+
+    // Test field instance settings.
+    if ($instance_exists) {
+      $this->assertEqual($instance_info['field_name'], $field['field_name']);
+      $this->assertEqual($instance_info['entity_type'], PP_PARAGRAPH_TYPE);
+      $this->assertEqual($instance_info['bundle'], $this->paragraph_bundle_name);
+      $this->assertEqual($instance_info['label'], $field_label);
+      $this->assertEqual($instance_info['required'], TRUE);
+
+      // Test display settings.
+      $display = array(
+        'default' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => -10,
+        ),
+        'paragraphs_editor_preview' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => -10,
+        ),
+      );
+
+      $display_difference = $this->array_diff_assoc_deep($display, $instance_info['display']);
+      $this->assertTrue(empty($display_difference), t('Display contains all specified settings. Differences (print_r) %differences', array('%differences' => print_r($display_difference, TRUE))));
+    }
+  }
+
+  /**
+   * Test function for field file creation.
+   */
+  public function testParagraphsPackFieldFileCreation() {
+    $uri_scheme = 'public';
+
+    // Run tested function.
+    $field = paragraphs_pack_get_field_file($uri_scheme);
+
+    // Test field existence.
+    $field_exists = !empty($field);
+    $this->assertTrue($field_exists, t('Field was created successfully.'));
+
+    $field_info = field_info_field($field['field_name']);
+
+    $field_info_exists = !empty($field_info);
+    $this->assertTrue($field_info_exists, t('Field was created successfully.'));
+
+    // Test field settings.
+    if ($field_info_exists) {
+      $this->assertEqual($field_info['field_name'], PP_FIELD_FILE);
+      $this->assertEqual($field_info['type'], 'file');
+      $this->assertEqual($field_info['entity_types'], array(PP_PARAGRAPH_TYPE));
+      $this->assertEqual($field_info['cardinality'], -1);
+      $this->assertEqual($field_info['settings']['uri_scheme'], $uri_scheme);
+    }
+  }
+
+  /**
+   * Test function for field file instance creation.
+   */
+  public function testParagraphsPackFieldFileInstanceCreation() {
+    $field_label = 'Test file';
+    $settings = array('file_extensions' => 'png jpg gif');
+
+    // Run tested function.
+    paragraphs_pack_add_field_file($this->paragraph_bundle_name, $field_label, $settings);
+
+    // Test field instance existence.
+    $field = paragraphs_pack_get_field_file();
+    $instance_info = field_info_instance(PP_PARAGRAPH_TYPE, $field['field_name'], $this->paragraph_bundle_name);
+    $instance_exists = !empty($instance_info);
+    $this->assertTrue($instance_exists, t('Instance was created successfully.'));
+
+    // Test field instance settings.
+    if ($instance_exists) {
+      $this->assertEqual($instance_info['field_name'], $field['field_name']);
+      $this->assertEqual($instance_info['entity_type'], PP_PARAGRAPH_TYPE);
+      $this->assertEqual($instance_info['bundle'], $this->paragraph_bundle_name);
+      $this->assertEqual($instance_info['label'], $field_label);
+
+      $settings_difference = $this->array_diff_assoc_deep($settings, $instance_info['settings']);
+      $this->assertTrue(empty($settings_difference), t('Field instance contains all specified settings. Differences (print_r) %differences', array('%differences' => print_r($settings_difference, TRUE))));
+    }
+  }
+
+  /**
+   * Helper function for mulitdimensional arrays deep comparison
+   *
+   * @param array $array1
+   *   First array for comparison.
+   * @param array $array2
+   *   Second array for comparison.
+   * @return array
+   *   A hierarchical difference between arrays.
+   */
+  protected function array_diff_assoc_deep($array1, $array2) {
+    $difference = array();
+
+    foreach ($array1 as $key => $value) {
+      if (is_array($value)) {
+        if (!isset($array2[$key])) {
+          $difference[$key] = $value;
+        }
+        elseif (!is_array($array2[$key])) {
+          $difference[$key] = $value;
+        }
+        else {
+          $new_diff = $this->array_diff_assoc_deep($value, $array2[$key]);
+          if ($new_diff != FALSE) {
+            $difference[$key] = $new_diff;
+          }
+        }
+      }
+      elseif (!isset($array2[$key]) || $array2[$key] != $value) {
+        $difference[$key] = $value;
+      }
+    }
+    return $difference;
+  }
+
+}
+
+/**
+ * Class ParagraphsPackFeatureTestCase
+ *
+ * Ensure that the test features has been installed.
+ */
+class ParagraphsPackFeatureTestCase extends DrupalWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Test Paragraphs pack testing feature module',
+      'description' => 'Ensure that the Paragraphs pack testing feature installs.',
+      'group' => 'Paragraphs pack',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('paragraphs_pack_test');
+    // Log user in.
+    $web_user = $this->drupalCreateUser(array('bypass node access', 'administer content types', 'administer paragraphs bundles'));
+    $this->drupalLogin($web_user);
+  }
+
+  /**
+   * Test content type stored in features.
+   */
+  public function testParagraphsPackNodeListNodeType() {
+    $node_types = node_type_get_types();
+    $this->assertTrue(isset($node_types['pp_test_landing_page']), 'Node type landing page is available.');
+    // Go to test content type.
+    $this->drupalGet('node/add/pp-test-landing-page');
+    $this->assertText('Paragraphs', 'Found paragraphs field');
+  }
+
+}

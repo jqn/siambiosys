@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * Paragraphs pack juicebox module file.
+ */
+
+// Bundles:
+define('PP_BUNDLE_JUICEBOX', 'paragraphs_pack_juicebox');
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function paragraphs_pack_juicebox_image_default_styles() {
+  $styles = array();
+
+  $styles['pp_juicebox_style_1600x900'] = array(
+    'label' => 'PP Juicebox Style (1600x900)',
+    'effects' => array(
+      array(
+        'name' => 'image_scale',
+        'data' => array('width' => 1600, 'height' => 900, 'upscale' => 1),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
+ * Defines array for configuring Juicebox formatter.
+ *
+ * @return array
+ */
+function paragraphs_pack_juicebox_widget_configuration() {
+  return array(
+    'label' => 'hidden',
+    'module' => 'juicebox',
+    'settings' => array(
+      'apply_markup_filter' => 1,
+      'caption_source' => 'field_file_image_alt_text',
+      'custom_parent_classes' => '',
+      'image_style' => 'pp_juicebox_style_1600x900',
+      'incompatible_file_action' => 'show_icon_and_link',
+      'jlib_backgroundColor' => '#222222',
+      'jlib_galleryHeight' => '100%',
+      'jlib_galleryWidth' => '100%',
+      'jlib_showExpandButton' => 1,
+      'jlib_showOpenButton' => 1,
+      'jlib_showThumbsButton' => 1,
+      'jlib_textColor' => 'rgba(255,255,255,1)',
+      'jlib_thumbFrameColor' => 'rgba(255,255,255,.5)',
+      'jlib_useFullscreenExpand' => 0,
+      'jlib_useThumbDots' => 0,
+      'linkurl_source' => '',
+      'linkurl_target' => '_blank',
+      'manual_config' => '',
+      'show_debug_links' => 0,
+      'thumb_style' => 'media_thumbnail',
+      'title_source' => 'field_file_image_title_text'),
+    'type' => 'juicebox_formatter',
+    'weight' => 1,
+  );
+}

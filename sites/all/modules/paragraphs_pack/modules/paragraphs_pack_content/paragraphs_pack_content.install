@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the paragraphs_pack_content module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function paragraphs_pack_content_install() {
+  paragraphs_pack_create_paragraph(PP_BUNDLE_CONTENT, 'Content');
+  paragraphs_pack_add_field_title(PP_BUNDLE_CONTENT, 'Title');
+  paragraphs_pack_add_field_body(PP_BUNDLE_CONTENT, 'Content');
+}

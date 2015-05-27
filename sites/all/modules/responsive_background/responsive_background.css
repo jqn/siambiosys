@@ -1,0 +1,25 @@
+/**
+ * @file
+ * Responsive Background default CSS
+ *
+ * @author: Daniel Honrade http://drupal.org/user/351112
+ *
+ */
+
+/* Responsive Background Images Render */  
+#responsive-background-image-wrapper { left: 0; top: 0; z-index: 0; width: 100% !important; overflow: hidden; }
+.responsive-background-image { left: 0; top: 0; z-index: 0; }
+#responsive-background-image-dummy { display: none; }
+
+
+/* Responsive Background Images Admin UI */
+#edit-responsive-background .responsive-background-columns {}
+#edit-responsive-background .responsive-background-column { width: 49%;}
+#edit-responsive-background .responsive-background-column-1 { float: left; }
+#edit-responsive-background .responsive-background-column-2 { float: right; }
+#edit-responsive-background .description { clear: both; }
+
+#header-wrapper, #header, #branding, #page-wrapper, #page, #footer-wrapper, #footer {
+    position: relative;
+    z-index: 10;
+}

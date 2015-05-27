@@ -1,0 +1,38 @@
+/*** Gallery Page ***/
+.view-gallery-menu .views-row {
+  //@include make-md-column(2);
+  width: 20%;
+  //float: left;
+  cursor: pointer;
+   .node-teaser {
+     //background-color: $white;
+     padding: 10px;
+     text-align: center;
+   }
+   img {
+	 	 -webkit-border-radius: 100px;
+		 -moz-border-radius: 100px;
+		 border-radius: 100px;
+     width: 100%;
+     height: auto;
+   }
+}
+
+@media (min-width: 768px) {
+// .col-sm-15 {
+//         width: 20%;
+//         float: left;
+//     }
+}
+@media (min-width: 992px) {
+.view-gallery-menu .views-row {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+//    .col-lg-15 {
+//         width: 20%;
+//         float: left;
+//     }
+}

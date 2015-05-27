@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Paragraphs pack content module's tests.
+ */
+module_load_include('inc', 'paragraphs_pack', 'tests/paragraphs_pack.test_helper');
+
+/**
+ * Test case for Paragraphs pack content.
+ */
+class ParagraphsPackContentTestCase extends ParagraphsPackWebTestCase {
+
+  /**
+   * Give display information to the SimpleTest system.
+   *
+   * getInfo() returns a keyed array of information for SimpleTest to show.
+   *
+   * It's a good idea to organize your tests consistently using the 'group'
+   * key.
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Paragraphs pack content tests',
+      'description' => 'Tests:  Paragraphs pack content installation.',
+      'group' => 'Paragraphs pack',
+    );
+  }
+
+  /**
+   * Set up the test environment.
+   */
+  public function setUp() {
+    // We call parent::setUp() with the list of modules we want to enable.
+    parent::setUp('paragraphs_pack_content');
+  }
+
+  /**
+   * Paragraph Content bundle should be created.
+   */
+  public function testParagraphsPackContentBundle() {
+    $this->check_bundle_existence(PP_BUNDLE_CONTENT);
+  }
+
+  /**
+   * Test fields and instances existence.
+   */
+  public function testParagraphsPackContentFieldsExistence() {
+    $this->check_field_existence(PP_FIELD_TITLE, PP_BUNDLE_CONTENT);
+    $this->check_field_existence(PP_FIELD_BODY, PP_BUNDLE_CONTENT);
+  }
+
+}

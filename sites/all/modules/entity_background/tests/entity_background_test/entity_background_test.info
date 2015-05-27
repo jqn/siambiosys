@@ -1,0 +1,38 @@
+name = Entity background test
+core = 7.x
+package = Entity background
+hidden = TRUE
+dependencies[] = ctools
+dependencies[] = entity_background
+dependencies[] = features
+dependencies[] = paragraphs
+dependencies[] = strongarm
+dependencies[] = text
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[field_base][] = field_eb_test_body
+features[field_base][] = field_eb_test_paragraphs
+features[field_instance][] = node-eb_test_landing_page-field_eb_test_paragraphs
+features[field_instance][] = paragraphs_item-eb_content_test-field_eb_test_body
+features[node][] = eb_test_landing_page
+features[paragraphs][] = eb_content_test
+features[variable][] = comment_anonymous_eb_test_landing_page
+features[variable][] = comment_default_mode_eb_test_landing_page
+features[variable][] = comment_default_per_page_eb_test_landing_page
+features[variable][] = comment_eb_test_landing_page
+features[variable][] = comment_form_location_eb_test_landing_page
+features[variable][] = comment_preview_eb_test_landing_page
+features[variable][] = comment_subject_field_eb_test_landing_page
+features[variable][] = field_bundle_settings_node__eb_test_landing_page
+features[variable][] = menu_options_eb_test_landing_page
+features[variable][] = menu_parent_eb_test_landing_page
+features[variable][] = node_options_eb_test_landing_page
+features[variable][] = node_preview_eb_test_landing_page
+features[variable][] = node_submitted_eb_test_landing_page
+
+; Information added by Drupal.org packaging script on 2015-04-17
+version = "7.x-1.0-alpha6"
+core = "7.x"
+project = "entity_background"
+datestamp = "1429247288"
+

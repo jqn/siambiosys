@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Paragraphs pack node list module file.
+ */
+// Bundles:
+define('PP_BUNDLE_NODE_LIST', 'paragraphs_pack_node_list');

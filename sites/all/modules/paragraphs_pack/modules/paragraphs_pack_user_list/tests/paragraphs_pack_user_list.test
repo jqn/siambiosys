@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * @file
+ * Paragraphs pack taxonomy term list module's tests.
+ */
+module_load_include('inc', 'paragraphs_pack', 'tests/paragraphs_pack.test_helper');
+
+/**
+ * class ParagraphsPackNodeListTestCase
+ *
+ * Test case for Paragraphs pack taxonomy term list.
+ */
+class ParagraphsPackUserListTestCase extends ParagraphsPackWebTestCase {
+
+  /**
+   * Give display information to the SimpleTest system.
+   *
+   * getInfo() returns a keyed array of information for SimpleTest to show.
+   *
+   * It's a good idea to organize your tests consistently using the 'group'
+   * key.
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Paragraphs pack user list tests',
+      'description' => 'Tests:  Paragraphs pack user list installation.',
+      'group' => 'Paragraphs pack',
+    );
+  }
+
+  /**
+   * Set up the test environment.
+   */
+  public function setUp() {
+    // We call parent::setUp() with the list of modules we want to enable.
+    parent::setUp('paragraphs_pack_user_list');
+  }
+
+  /**
+   * Test Paragraph Taxonomy term bundle existence.
+   */
+  public function testParagraphsPackUserListBundle() {
+    $this->check_bundle_existence(PP_BUNDLE_USER_LIST);
+  }
+
+  /**
+   * Test fields and instances existence.
+   */
+  public function testParagraphsPackUserListFieldsExistence() {
+    $field_items_name = PP_FIELD_ITEMS . '_user';
+
+    $this->check_field_existence(PP_FIELD_TITLE, PP_BUNDLE_USER_LIST);
+    $this->check_field_existence($field_items_name, PP_BUNDLE_USER_LIST);
+    $this->check_field_existence(PP_FIELD_VIEW_MODE, PP_BUNDLE_USER_LIST);
+  }
+
+}
+
+/**
+ * Class ClassyParagraphsTestCase
+ *
+ * Ensure that the markup appears.
+ */
+class ParagraphsPackUserListTestViewModeCase extends ParagraphsPackFeatureWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Test view mode on user list paragraph',
+      'description' => 'Ensure that the view mode works correctly on user list paragraph.',
+      'group' => 'Paragraphs pack',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('paragraphs_pack_test', 'paragraphs_pack_user_list');
+    // Log user in.
+    $web_user = $this->drupalCreateUser(array('bypass node access', 'administer content types', 'administer paragraphs bundles'));
+    $this->drupalLogin($web_user);
+  }
+
+  /**
+   * Test view mode options.
+   */
+  public function testParagraphsPackUserListViewModeOptions() {
+    $this->check_view_mode_options('user');
+  }
+
+}

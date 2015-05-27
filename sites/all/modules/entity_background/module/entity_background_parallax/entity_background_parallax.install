@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Install file entity background parallax.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function entity_background_parallax_install() {
+  // Create image field.
+  entity_background_add_field_image(EB_FC_ENTITY, EB_FIELD, EB_PARALLAX_IMAGE_FIELD, 'Image');
+  // Create speed text field.
+  entity_background_add_field_text(EB_FC_ENTITY, EB_FIELD, EB_PARALLAX_SPEED_FIELD, 'Speed');
+  // Create field group.
+  entity_background_create_bd_field_group('group_eb_parallax', 'Parallax', array(EB_PARALLAX_IMAGE_FIELD, EB_PARALLAX_SPEED_FIELD));
+}

@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Paragraphs pack juicebox module's tests.
+ */
+module_load_include('inc', 'paragraphs_pack', 'tests/paragraphs_pack.test_helper');
+
+/**
+ * Test case for Paragraphs pack juicebox.
+ */
+class ParagraphsPackjuiceboxTestCase extends ParagraphsPackWebTestCase {
+
+  /**
+   * Give display information to the SimpleTest system.
+   *
+   * getInfo() returns a keyed array of information for SimpleTest to show.
+   *
+   * It's a good idea to organize your tests consistently using the 'group'
+   * key.
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Paragraphs pack juicebox tests',
+      'description' => 'Tests:  Paragraphs pack juicebox installation.',
+      'group' => 'Paragraphs pack',
+    );
+  }
+
+  /**
+   * Set up the test environment.
+   */
+  public function setUp() {
+    // We call parent::setUp() with the list of modules we want to enable.
+    parent::setUp('paragraphs_pack_juicebox');
+  }
+
+  /**
+   * Paragraph juicebox bundle should be created.
+   */
+  public function testParagraphsPackjuiceboxBundle() {
+    $this->check_bundle_existence(PP_BUNDLE_JUICEBOX);
+  }
+
+  /**
+   * Test fields and instances existence.
+   */
+  public function testParagraphsPackjuiceboxFieldsExistence() {
+    $this->check_field_existence(PP_FIELD_TITLE, PP_BUNDLE_JUICEBOX);
+    $this->check_field_existence(PP_FIELD_IMAGE, PP_BUNDLE_JUICEBOX);
+  }
+
+}

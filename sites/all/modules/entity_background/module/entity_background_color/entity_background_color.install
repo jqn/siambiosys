@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Install file entity background color.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function entity_background_color_install() {
+  // Clear the field info cache so the dependency on jquery_colorpicker works
+  // every time.
+  field_info_cache_clear();
+
+  // Create field.
+  entity_background_add_field_color(EB_FC_ENTITY, EB_FIELD, EB_COLOR_FIELD, 'Color');
+  // Create field group.
+  entity_background_create_bd_field_group('group_eb_color', 'Color', array(EB_COLOR_FIELD));
+}

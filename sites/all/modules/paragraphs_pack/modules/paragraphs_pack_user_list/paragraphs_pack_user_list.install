@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the paragraphs_pack_user_list module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function paragraphs_pack_user_list_install() {
+  paragraphs_pack_create_paragraph(PP_BUNDLE_USER_LIST, 'User list');
+  paragraphs_pack_add_field_title(PP_BUNDLE_USER_LIST, 'Title');
+  paragraphs_pack_add_field_view_mode(PP_BUNDLE_USER_LIST, 'View mode');
+  paragraphs_pack_add_field_items(PP_BUNDLE_USER_LIST, 'Items', 'user');
+}

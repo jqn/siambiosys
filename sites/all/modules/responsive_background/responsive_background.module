@@ -1,0 +1,158 @@
+<?php
+/**
+ * @file
+ * Responsive Background Module
+ *
+ * @author: Daniel Honrade http://drupal.org/user/351112
+ *
+ * Note: Obviously, this will not work unless the javascript is on.
+ *
+ */
+
+@include_once dirname(__FILE__) . '/responsive_background.utils.inc';
+
+/**
+ * Implements hook_init().
+ *
+ * Sets the defaults global
+ *
+ */
+function responsive_background_init() {
+
+  global $_responsive_background_defaults;
+  global $_responsive_background_set;
+
+  $_responsive_background_defaults = array(
+    'enabled'  => 1,  // always enabled by default
+    'position' => 'fixed',
+    'center'   => 0,
+    'top'      => 0,
+    'height'  => '',
+    'bp320'    => 'none',
+    'bp480'    => 'none',
+    'bp640'    => 'none',
+    'bp800'    => 'none',
+    'bp960'    => 'none',
+    'bp1120'   => 'none',
+    'bp1280'   => 'none',
+    'bp1440'   => 'none',
+    'bp1600'   => 'none',
+    'images'   => array(),
+    'exclude'  => 'admin*', // pages to exclude from rwd
+  );
+
+  $_responsive_background_set = variable_get('responsive_background', $_responsive_background_defaults);
+}
+
+
+/**
+ * Implements hook_menu().
+ *
+ */
+function responsive_background_menu() {
+
+  $items = array();
+
+  $items['admin/config/media/responsive_background'] = array(
+    'title' => 'Responsive Background Images',
+    'page callback' => 'drupal_get_form',
+    'access callback' => 'user_access',
+    'access arguments' => array('administer responsive_background'),
+    'page arguments' => array('responsive_background_admin', NULL),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'responsive_background.admin.inc',
+    'description' => 'Configure Responsive Background Images',
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_perm().
+ *
+ */
+function responsive_background_permission() {
+
+  return array(
+    'administer responsive_background' => array(
+      'title' => t('Administer Background Images'),
+      'description' => t('Perform administration tasks for Responsive Background Images.'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_process_html().
+ *
+ * Initialize the trigger for responsive background
+ *
+ */
+function responsive_background_preprocess_page(&$vars) {
+
+  global $_responsive_background_set;
+
+  $settings = $_responsive_background_set;
+
+  if ($settings['enabled'] && !drupal_match_path($_GET['q'], $settings['exclude'])) {
+
+    drupal_add_js('sites/all/libraries/jquery.cycle/jquery.cycle.all.min.js');
+  }
+}
+
+/**
+ * Implements hook_process_html().
+ *
+ * Initialize the trigger for responsive background
+ *
+ */
+function responsive_background_process_html(&$vars) {
+
+  global $_responsive_background_set;
+
+  $settings = $_responsive_background_set;
+
+  if ($settings['enabled'] && !drupal_match_path($_GET['q'], $settings['exclude'])) {
+
+    // other options
+    $position = $settings['position']; // fixed/absolute
+    $center   = $settings['center'];   // if the image is bigger than the container or window, it will be centered
+    $top      = $settings['top'];      // top position
+    $height   = $settings['height'];   // backround height
+
+    // get rendered images
+    $images = responsive_background_get_images();
+
+    // get all images
+    $image_files = '';
+    foreach ($images as $key => $image) {
+      $image_files .= '<div class="responsive-background-slide"><img id="responsive-background-image-' . $key . '" src="' . $image . '" class="responsive-background-image" alt="Background Image" /></div>';
+    }
+    // responsive background output
+    $image_wrapper = '<div id="responsive-background-image-wrapper">' . $image_files . '</div>';
+
+    $responsive_background_init = $image_wrapper . '
+
+      <script type="text/javascript">
+        (function($){
+          $(".responsive-background-image").responsive_background({
+            position: "' . $position . '",
+            center: ' . $center . ',
+            top: "' . $top . '",
+            height: "' . $height . '",
+            bp320: "' . $settings['bp320'] . '",
+            bp480: "' . $settings['bp480'] . '",
+            bp640: "' . $settings['bp640'] . '",
+            bp800: "' . $settings['bp800'] . '",
+            bp960: "' . $settings['bp960'] . '",
+            bp1120: "' . $settings['bp1120'] . '",
+            bp1280: "' . $settings['bp1280'] . '",
+            bp1440: "' . $settings['bp1440'] . '",
+            bp1600: "' . $settings['bp1600'] . '"
+          });
+        })(jQuery);
+      </script>';
+
+    $vars['page_bottom'] .= $responsive_background_init;
+  }
+}

@@ -1,0 +1,411 @@
+<?php
+
+/**
+ * @file
+ * Module file entity background.
+ */
+// Fields:
+define('EB_FIELD', 'eb_background');
+define('EB_SELECTION_FIELD', 'eb_selection');
+
+// Entities:
+define('EB_PARAGRAPHS_ENTITY', 'paragraphs_item');
+define('EB_FC_ENTITY', 'field_collection_item');
+// Field group prefix.
+define('EB_FG_PREFIX', 'group_eb_');
+// Plugin name
+define('EB_PLUGIN', 'entity_background');
+
+// Includes fields CRUD functions
+require_once dirname(__FILE__) . '/includes/entity_background.fields_crud.inc';
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function entity_background_ctools_plugin_type() {
+  return array(
+    EB_PLUGIN => array(
+      'use hooks' => FALSE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function entity_background_entity_view($entity, $entity_type, $view_mode, $langcode) {
+  entity_background_load_background($entity_type, $entity);
+}
+
+/**
+ * Loads background plugins.
+ *
+ * @param $entity_type
+ *   An entity type which background should be loaded.
+ * @param $entity
+ *   An entity object which background should be loaded.
+ */
+function entity_background_load_background($entity_type, $entity) {
+  $function_name = 'handler';
+  $function = entity_background_get_background_plugin_function($entity_type, $entity, $function_name);
+
+  // The function exist.
+  if (function_exists($function)) {
+    $selector = entity_background_generate_selector($entity_type, $entity);
+    // Get background field collection.
+    $wrapper = entity_metadata_wrapper($entity_type, $entity);
+    $field_collection = $wrapper->eb_background->value();
+    //
+    $static = &drupal_static($function, array());
+    // Decorate the entity with the selector just once.
+    if (!isset($static[$selector])) {
+      // Run the function.
+      $function($selector, $field_collection);
+      $static[$selector] = TRUE;
+    }
+  }
+}
+
+/**
+ * Get the specified background plugin function if it exist.
+ *
+ * @param $entity_type
+ *   An entity type which background should be loaded.
+ * @param $entity
+ *   An entity object which background should be loaded.
+ * @param $function_name
+ *   A name of the plugin function to run.
+ * @return string|boolean
+ *   The background plugin function name or FALSE if it does not exist.
+ */
+function entity_background_get_background_plugin_function($entity_type, $entity, $function_name) {
+  $plugin = FALSE;
+
+  // Get the plugin.
+  if (entity_background_has_background_field($entity)) {
+    // Plugin must be found.
+    $plugin = entity_background_find_background_plugin($entity_type, $entity);
+  }
+
+  // Get the function.
+  if ($plugin && isset($plugin[$function_name])) {
+    return $plugin[$function_name];
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Has the entity background field.
+ *
+ * @param $entity
+ *   An entity object which background should be loaded.
+ * @return boolean
+ *   TRUE if the background field is present on the entity, FALSE otherwise.
+ */
+function entity_background_has_background_field($entity) {
+  return !empty($entity->{EB_FIELD});
+}
+
+/**
+ * Find out if the plugin for the specified entity exists and return it.
+ *
+ * @param $entity_type
+ *   An entity type which background should be loaded.
+ * @param $entity
+ *   An entity object which background should be loaded.
+ * @return array|boolean
+ *   An array of information arrays about the plugin received or FALSE if
+ *   plugin with such name doesn't exist.
+ */
+function entity_background_find_background_plugin($entity_type, $entity) {
+  $plugin = FALSE;
+
+  // Get selection value.
+  $wrapper = entity_metadata_wrapper($entity_type, $entity);
+  $selection = $wrapper->eb_background->eb_selection->value();
+
+  // Continue only if the selection has a value.
+  if (!empty($selection)) {
+    $plugin_name = entity_background_get_plugin_from_group_name($selection);
+    // Get plugin and handler function name.
+    $plugin = entity_background_get_background_plugin($plugin_name);
+  }
+
+  return $plugin;
+}
+
+/**
+ * Helper function used to get plugin name from the field group name.
+ * For example, group_bd_image to image.
+ *
+ * @param string $group_name
+ *   The whole group name containing group prefix.
+ * @return string
+ *   A group plugin name without group prefix.
+ */
+function entity_background_get_plugin_from_group_name($group_name) {
+  return str_replace(EB_FG_PREFIX, '', $group_name);
+}
+
+/**
+ * Get entity background plugin.
+ *
+ * @param $name
+ *   A plugin name.
+ * @return array|boolean
+ *   An array of information arrays about the plugin received or FALSE if
+ *   plugin with such name doesn't exist.
+ */
+function entity_background_get_background_plugin($name) {
+  ctools_include('plugins');
+  $plugins = ctools_get_plugins('entity_background', EB_PLUGIN);
+
+  return !empty($plugins[$name]) ? $plugins[$name] : FALSE;
+}
+
+/**
+ * Converts a selector string into a proper selector path.
+ *
+ * @param $entity_type
+ *   An entity type which selectors should be generated.
+ * @param $entity
+ *   An entity object which selectors should be generated.
+ * @return string
+ *   CSS selector that identifies the entity wrapper.
+ */
+function entity_background_generate_selector($entity_type, $entity) {
+  $selector = entity_background_get_selector($entity_type);
+  // Get entity ID.
+  list($id) = entity_extract_ids($entity_type, $entity);
+  $selector = str_replace('[entity-id]', $id, $selector);
+  return $selector;
+}
+
+/**
+ * Get CSS selector.
+ *
+ * @param $entity_type
+ *   An entity type which selectors are requested.
+ */
+function entity_background_get_selector($entity_type) {
+  $selectors = entity_background_selectors();
+  if (!empty($selectors[$entity_type])) {
+    return $selectors[$entity_type];
+  }
+}
+
+/**
+ * Stores and alters selectors.
+ *
+ * @return array
+ *   An array of selectors.
+ */
+function entity_background_selectors() {
+  $selectors = array(
+    'node' => '.page-node-[entity-id]',
+    'user' => '.page-user-[entity-id]',
+    'taxonomy_term' => '.page-taxonomy-term-[entity-id]',
+  );
+  // Alter $selectors array.
+  drupal_alter('entity_background_selectors', $selectors);
+  return $selectors;
+}
+
+/**
+ * Implements hook_entity_background_selectors_alter().
+ */
+function entity_background_entity_background_selectors_alter(&$selectors) {
+  // Get paragraphs ID prefix directly from paragraphs_id.
+  $prefix = paragraphs_id_get_prefix();
+  $selectors['paragraphs_item'] = '.' . $prefix . '[entity-id]';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function entity_background_form_paragraphs_admin_bundle_form_alter(&$form, &$form_state, $form_id) {
+  $bundle = $form['#paragraphs_bundle'];
+
+  // Add custom field set for entity background.
+  $form['entity_background'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Entity background'),
+    '#weight' => 5,
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+
+  // @TODO - Workaround.
+  // It seems that paragraphs modules doesn't have a
+  // hook_paragraphs_type_insert. We need to work around this by only allowing
+  // users to select the bd option once the paragraph bundle has been
+  // created. The checkbox will only be visible if you edit the bundle.
+  if ($bundle->locked == 0) {
+    $form['entity_background']['#description'] = t('Please create paragraph bundle before configuring entity background.');
+  }
+  if ($bundle->locked == 1) {
+    // Get bd field instance.
+    $bd_instance = field_info_instance(EB_PARAGRAPHS_ENTITY, EB_FIELD, $bundle->bundle);
+    $form['entity_background']['eb_enabled'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable entity background for %bundle', array('%bundle' => $bundle->name)),
+      '#default_value' => !empty($bd_instance) ? TRUE : FALSE,
+      '#disabled' => !empty($bd_instance) ? TRUE : FALSE,
+    );
+    // Add description.
+    if (!empty($bd_instance)) {
+      $form['entity_background']['eb_enabled']['#description'] = t("If you want to disable entity background, please delete the field from manage fields page.");
+    }
+    $form['#submit'][] = 'entity_background_form_paragraphs_admin_bundle_submit';
+  }
+}
+
+/**
+ * Custom submit handler for entity_background fieldset.
+ *
+ * @param $form
+ * @param $form_state
+ */
+function entity_background_form_paragraphs_admin_bundle_submit($form, &$form_state) {
+  // Get bundle.
+  $bundle = $form['#paragraphs_bundle'];
+  $enabled = $form_state['values']['eb_enabled'];
+  if ($enabled == TRUE) {
+    entity_background_add_field_eb_background(EB_PARAGRAPHS_ENTITY, $bundle->bundle, 'Background');
+    entity_background_add_field_eb_selection(EB_FC_ENTITY, EB_FIELD, 'Selection');
+  }
+}
+
+/**
+ * Helper function used to create a field group on the bd field collection.
+ *
+ * @param string $group_name
+ *   A name of the group to be created.
+ * @param string $label
+ *   A label of the group to be created.
+ * @param array $fields
+ *   An array of fields that should be assigned to the group.
+ * @param int $weight
+ *   A weight of the newly created group among the other fields.
+ * @return \stdClass
+ */
+function entity_background_create_bd_field_group($group_name, $label, $fields, $weight = 0) {
+  // Set variables.
+  $entity_type = EB_FC_ENTITY;
+  $bundle = EB_FIELD;
+  $mode = 'form';
+  // Find existing group.
+  $groups = field_group_read_groups();
+  if (empty($groups[$entity_type][$bundle][$mode][$group_name])) {
+    // Get field group object.
+    $field_group = entity_background_add_field_group($group_name, $entity_type, $bundle);
+    // Get data array.
+    $data = entity_background_get_field_group_data($label, $fields, $weight);
+    // Merge data array into field group object.
+    $field_group += $data;
+    // Convert array into an object.
+    $field_group = (object) $field_group;
+    // Create field group.
+    field_group_group_save($field_group);
+    // Enable export.
+    ctools_include('export');
+    ctools_export_crud_enable('field_group', $field_group->identifier);
+    // Return new group.
+    return $field_group;
+  }
+  // Get loaded entity.
+  $field_group = $groups[$entity_type][$bundle][$mode][$group_name];
+  return $field_group;
+}
+
+/**
+ * Define field group object.
+ *
+ * @param string $group_name
+ *   A name of the group to be added.
+ * @param string $entity_type
+ *   An entity type to which should be the group added.
+ * @param string $bundle
+ *   An bundle to which should be the group added.
+ * @param string $mode
+ *   A mode of the group.
+ * @return array
+ *   An array of group definition.
+ */
+function entity_background_add_field_group($group_name, $entity_type, $bundle, $mode = 'form') {
+  $identifier = $group_name . '|' . $entity_type . '|' . $bundle . '|' . $mode;
+
+  $field_group = array(
+    'identifier' => $identifier,
+    'group_name' => $group_name,
+    'entity_type' => $entity_type,
+    'bundle' => $bundle,
+    'mode' => $mode,
+  );
+
+  return $field_group;
+}
+
+/**
+ * Generates a data array which is used for the field group.
+ *
+ * @param array $label
+ *   An array of fields that should be assigned to the group.
+ * @param int $weight
+ *   A weight of the group.
+ * @return array
+ *   A data array of the group.
+ */
+function entity_background_get_field_group_data($label, $fields, $weight = 0) {
+  $data = array(
+    'label' => $label,
+    'weight' => $weight,
+    'format_type' => 'html-element',
+    'format_settings' => array(
+      'instance_settings' => array(
+        'element' => 'div',
+        'show_label' => 0,
+        'label_element' => 'div',
+        'classes' => '',
+        'attributes' => '',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  // Defines fields.
+  foreach ($fields as $field) {
+    $data['children'][] = $field;
+  }
+  return $data;
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function entity_background_field_widget_form_alter(&$element, &$form_state, $context) {
+  if (!empty($element['#field_name']) && $element['#field_name'] == EB_FIELD) {
+    $form = $context['form'];
+
+    $parent_para = $form['#field_name'];
+    $parent_delta = $form['#delta'];
+    $language = $form['#language'];
+    $groups = $element['#groups'];
+
+    $input_name = $parent_para . '[' . $language . '][' . $parent_delta . '][' . EB_FIELD . '][' . $language . '][0][' . EB_SELECTION_FIELD . '][' . $language . ']';
+
+    foreach ($groups as $key => $group) {
+      // Child field items.
+      $fields = $group->children;
+      $plugin = entity_background_get_plugin_from_group_name($key);
+      foreach ($fields as $field) {
+        $element[$field]['#states'] = array(
+          'visible' => array(
+            ':input[name="' . $input_name . '"]' => array('value' => EB_FG_PREFIX . $plugin),
+          ),
+        );
+      }
+    }
+  }
+}

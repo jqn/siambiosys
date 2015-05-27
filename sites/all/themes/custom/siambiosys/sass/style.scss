@@ -1,0 +1,147 @@
+// Each file is included or excluded in _all_overrides/scss
+// Styles and selectors can be tested quickly in this file,
+// but for actual implementaation: find the respective file in /overrides
+// and make your changes there.
+
+//
+// Compass Includes
+// --------------------------------------------------
+
+// Compass cross browser compatiblity tools.
+@import "compass/css3";
+@import "compass/css3/user-interface";
+// @import "rgbapng";
+
+// Better than Drupal's clearfix.
+@import "compass/utilities/general/clearfix";
+
+
+//
+// Bootstrap Overrides
+// --------------------------------------------------
+
+// Core variables and mixins
+@import "overrides/_variables.scss";
+@import "overrides/__mixins.scss";
+
+// Reset and dependencies
+// @import "overrides/_normalize.scss";
+// @import "overrides/_print.scss";
+// @import "overrides/_glyphicons.scss";
+
+// Core CSS
+// @import "overrides/_scaffolding.scss";
+@import "overrides/_type.scss";
+// @import "overrides/_code.scss";
+// @import "overrides/_grid.scss";
+// @import "overrides/_tables.scss";
+// @import "overrides/_forms.scss";
+// @import "overrides/_buttons.scss";
+
+// Components
+// @import "overrides/_component-animations.scss";
+// @import "overrides/_alerts.scss";
+// @import "overrides/_badges.scss";
+// @import "overrides/_breadcrumbs.scss";
+// @import "overrides/_button-groups.scss";
+// @import "overrides/_close.scss";
+// @import "overrides/_dropdowns.scss";
+// @import "overrides/_input-groups.scss";
+// @import "overrides/_jumbotron.scss";
+// @import "overrides/_labels.scss";
+// @import "overrides/_list-group.scss";
+// @import "overrides/_media.scss";
+// @import "overrides/_navbar.scss";
+// @import "overrides/_navs.scss";
+// @import "overrides/_pager.scss";
+// @import "overrides/_pagination.scss";
+// @import "overrides/_panels.scss";
+// @import "overrides/_progress-bars.scss";
+// @import "overrides/_responsive-embed.scss";
+// @import "overrides/_thumbnails.scss";
+@import "overrides/_theme.scss";
+@import "overrides/_top-bar.scss";
+// @import "overrides/_wells.scss";
+
+// Pages
+@import "overrides/pages/_games.scss";
+@import "overrides/pages/_homepage.scss";
+@import "overrides/pages/_gallery.scss";
+@import "overrides/pages/_slideshow.scss";
+
+// Components w/ JavaScript
+// @import "overrides/_modals.scss";
+// @import "overrides/_tooltip.scss";
+// @import "overrides/_popovers.scss";
+// @import "overrides/_carousel.scss";
+
+// Utility classes
+// @import "overrides/_utilities.scss";
+// @import "overrides/_responsive-utilities.scss";
+
+// Custom CSS
+
+/* Mockup CSS */
+#navbar {
+	background-color: #fff;
+}
+
+/*** Homepage Header ***/
+.region-messages {
+	background-color: lightblue;
+	margin-bottom: 40px;
+}
+
+#block-views-homepage-call-to-action-block h2 {
+	float: left;
+	width: 25%;
+	padding: 20px;
+}
+
+.views-field-field-header-image img {
+	width: 75%;
+}
+
+/*** Homepage Grid ***/
+#block-boxes-mmg-home-left {
+	padding-bottom: 40px;
+}
+
+/*** Homepage Teaser ***/
+#block-views-homepage-teaser-block-block {
+	clear: both;
+	padding: 10px;
+}
+
+.view-homepage-teaser-block {
+	padding-top: 0;
+}
+
+.view-homepage-teaser-block span {
+	font-size: 30px;
+}
+
+.views-field-field-learn-how a {
+	text-transform: uppercase;
+}
+
+.views-field-field-teaser-image {
+	float: right;
+}
+
+/*** Footer Lower ***/
+.region-footer-lower h2 {
+	display: none;
+}
+
+.region-footer-lower {
+	text-align: center;
+}
+
+.region-footer-lower li {
+	display: inline;
+}
+
+.region-footer-lower .nav>li>a {
+	display: inline;
+}

@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Module file entity background image.
+ */
+
+// Fields:
+define('EB_IMAGE_FIELD', 'field_eb_image');
+define('EB_IMAGE_STYLE_FIELD', 'field_eb_image_style');
+define('EB_IMAGE_STYLE', 'large');
+
+
+/**
+ * Implements hook_menu().
+ */
+function entity_background_image_menu() {
+  $items = array();
+  $includes = drupal_get_path('module', 'entity_background_image') . '/includes';
+
+  $items['admin/config/system/entity_background_image'] = array(
+    'title' => 'Entity background image',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('entity_background_image_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'entity_background_image.admin.inc',
+    'file path' => $includes,
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_ctools_plugin_directory().
+ */
+function entity_background_image_ctools_plugin_directory($module, $plugin) {
+  return 'plugins/' . $plugin;
+}

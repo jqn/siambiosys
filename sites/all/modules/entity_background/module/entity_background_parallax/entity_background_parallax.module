@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Module file entity background parallax.
+ */
+
+// Fields:
+define('EB_PARALLAX_IMAGE_FIELD', 'field_eb_parallax_image');
+define('EB_PARALLAX_SPEED_FIELD', 'field_eb_parallax_speed');
+
+define('EB_PARALLAX_LIBRARY', 'parallaxjs');
+
+/**
+ * Implementation of hook_ctools_plugin_directory().
+ */
+function entity_background_parallax_ctools_plugin_directory($module, $plugin) {
+  return 'plugins/' . $plugin;
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function entity_background_parallax_libraries_info() {
+  $libraries[EB_PARALLAX_LIBRARY] = array(
+    'name' => 'Parallax.js',
+    'vendor url' => 'http://pixelcog.com/parallax.js',
+    'download url' => 'http://pixelcog.com/parallax.js',
+    'version arguments' => array(
+      'file' => 'parallax.js',
+      'pattern' => '/parallax.js v([0-9a-zA-Z\.\ -]+)/',
+    ),
+    'files' => array(
+      'js' => array('parallax.js'),
+    ),
+  );
+
+  return $libraries;
+}

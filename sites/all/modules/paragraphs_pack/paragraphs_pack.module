@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * Paragraphs pack primary module file.
+ */
+// Field types:
+define('PP_FIELD_TYPE_VIEW_MODE', 'pp_view_mode');
+
+// Fields:
+define('PP_FIELD_TITLE', 'pp_title');
+define('PP_FIELD_BODY', 'pp_body');
+define('PP_FIELD_ITEMS', 'pp_items');
+define('PP_FIELD_VIEW_MODE', 'pp_view_mode');
+define('PP_FIELD_FILE', 'pp_file');
+define('PP_FIELD_IMAGE', 'pp_image');
+define('PP_FIELD_EXPAND', 'pp_expand');
+
+// Formatters:
+define('PP_FORMATTER_VIEW_MODE', 'pp_view_mode_formatter');
+
+// Content Types:
+define('PP_PARAGRAPH_TYPE', 'paragraphs_item');
+
+// Values:
+define('PP_VIEW_MODE_NONE', 'none');
+define('PP_VALUE_DEFAULT', 'default');
+
+// Includes fields.
+require_once dirname(__FILE__) . '/includes/paragraphs_pack.fields.inc';
+// Includes fields CRUD functions
+require_once dirname(__FILE__) . '/includes/paragraphs_pack.fields_crud.inc';
+// Includes formatters.
+require_once dirname(__FILE__) . '/includes/paragraphs_pack.formatters.inc';
+
+/**
+ * Creates new paragraph.
+ *
+ * @param string $machine_name
+ *  A machine name of new paragraph item.
+ * @param string $name
+ *  A human readable name of new paragraph item.
+ */
+function paragraphs_pack_create_paragraph($machine_name, $name) {
+  $bundle = new stdClass();
+
+  // Machine name.
+  $bundle->bundle = $machine_name;
+  // Human readable name.
+  $bundle->name = $name;
+  $bundle->locked = 1;
+
+  $status = paragraphs_bundle_save($bundle);
+
+  // Log and notify about the change.
+  $t = get_t();
+  $t_args = array('%name' => $bundle->name);
+
+  if ($status == SAVED_NEW) {
+    drupal_set_message($t('The paragraph bundle %name has been added.', $t_args));
+    watchdog('paragraphs_pack', 'Added paragraph bundle %name.', $t_args, WATCHDOG_NOTICE, l(t('view'), 'admin/structure/paragraphs'));
+  }
+  elseif ($status == SAVED_UPDATED) {
+    drupal_set_message(t('The paragraph bundle %name has been updated.', $t_args));
+  }
+  else {
+    drupal_set_message($t('The paragraph bundle %name couldn\'t been saved.', $t_args), 'warning');
+    watchdog('paragraphs_pack', 'The paragraph bundle %name couldn\'t been saved.', $t_args, WATCHDOG_WARNING, l(t('view'), 'admin/structure/paragraphs'));
+  }
+}
