@@ -1,8 +1,0 @@
-<?php
-
-/**
- * @file
- * Paragraphs pack node list module file.
- */
-// Bundles:
-define('PP_BUNDLE_USER_LIST', 'paragraphs_pack_user_list');
