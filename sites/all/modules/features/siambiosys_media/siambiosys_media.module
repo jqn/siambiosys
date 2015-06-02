@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Siambiosys media feature.
+ */
+
+include_once 'siambiosys_media.features.inc';
