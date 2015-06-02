@@ -1,0 +1,12 @@
+name = Siambiosys homepage
+core = 7.x
+package = Siambiosys
+version = 7.x-1.0-beta1
+project = siambiosys_homepage
+dependencies[] = views
+dependencies[] = views_slideshow
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = homepage_slideshow
+features_exclude[dependencies][ctools] = ctools
+project path = sites/all/modules/features

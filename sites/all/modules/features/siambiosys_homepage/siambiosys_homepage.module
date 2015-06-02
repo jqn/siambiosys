@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Siambiosys homepage feature.
+ */
+
+include_once 'siambiosys_homepage.features.inc';
