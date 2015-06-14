@@ -16,7 +16,11 @@ function siambiosys_users_default_rules_configuration() {
       "REQUIRES" : [ "rules" ],
       "ON" : { "user_login" : [] },
       "IF" : [
-        { "user_has_role" : { "account" : [ "account" ], "roles" : { "value" : { "4" : "4" } } } }
+        { "user_has_role" : {
+            "account" : [ "account" ],
+            "roles" : { "value" : { "3" : "3", "4" : "4" } }
+          }
+        }
       ],
       "DO" : [ { "redirect" : { "url" : "admin" } } ]
     }

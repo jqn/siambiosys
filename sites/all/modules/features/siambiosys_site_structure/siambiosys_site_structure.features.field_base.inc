@@ -94,13 +94,13 @@ function siambiosys_site_structure_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_catalog_category_'
-  $field_bases['field_catalog_category_'] = array(
+  // Exported field_base: 'field_catalog_category'
+  $field_bases['field_catalog_category'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_catalog_category_',
+    'field_name' => 'field_catalog_category',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -241,6 +241,28 @@ function siambiosys_site_structure_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_landing_page_image',
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'image',
+    'settings' => array(
+      'default_image' => 0,
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'image',
+  );
+
+  // Exported field_base: 'field_logo_medium_image'
+  $field_bases['field_logo_medium_image'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_logo_medium_image',
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -405,28 +427,6 @@ function siambiosys_site_structure_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'commerce_product_reference',
-  );
-
-  // Exported field_base: 'field_product_image'
-  $field_bases['field_product_image'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_product_image',
-    'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'image',
-    'settings' => array(
-      'default_image' => 0,
-      'uri_scheme' => 'public',
-    ),
-    'translatable' => 0,
-    'type' => 'image',
   );
 
   // Exported field_base: 'field_product_type'

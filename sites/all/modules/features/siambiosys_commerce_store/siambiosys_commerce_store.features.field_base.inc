@@ -49,7 +49,7 @@ function siambiosys_commerce_store_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => array(
-          'vocabulary' => 'catalog',
+          'vocabulary' => 'color',
           'parent' => 0,
         ),
       ),
@@ -182,7 +182,7 @@ function siambiosys_commerce_store_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => array(
-          'vocabulary' => 'catalog',
+          'vocabulary' => 'size',
           'parent' => 0,
         ),
       ),

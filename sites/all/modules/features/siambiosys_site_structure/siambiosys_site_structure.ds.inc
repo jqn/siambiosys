@@ -46,13 +46,11 @@ function siambiosys_site_structure_ds_layout_settings_info() {
   $ds_layout->entity_type = 'field_collection_item';
   $ds_layout->bundle = 'field_images';
   $ds_layout->view_mode = 'form';
-  $ds_layout->layout = 'ds_2col';
+  $ds_layout->layout = 'ds_1col';
   $ds_layout->settings = array(
     'regions' => array(
-      'right' => array(
+      'ds_content' => array(
         0 => 'field_perspective_view',
-      ),
-      'left' => array(
         1 => 'field_side_view',
         2 => 'field_top_view',
         3 => 'field_dimensions_view',
@@ -62,16 +60,15 @@ function siambiosys_site_structure_ds_layout_settings_info() {
       ),
     ),
     'fields' => array(
-      'field_perspective_view' => 'right',
-      'field_side_view' => 'left',
-      'field_top_view' => 'left',
-      'field_dimensions_view' => 'left',
+      'field_perspective_view' => 'ds_content',
+      'field_side_view' => 'ds_content',
+      'field_top_view' => 'ds_content',
+      'field_dimensions_view' => 'ds_content',
       '_add_existing_field' => 'hidden',
     ),
     'classes' => array(),
     'wrappers' => array(
-      'left' => 'div',
-      'right' => 'div',
+      'ds_content' => 'div',
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',
@@ -257,6 +254,43 @@ function siambiosys_site_structure_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['node|news|form'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|product_display|form';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'product_display';
+  $ds_layout->view_mode = 'form';
+  $ds_layout->layout = 'ds_2col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'left' => array(
+        0 => 'title',
+        1 => 'field_product',
+        2 => 'field_catalog_category',
+      ),
+      'hidden' => array(
+        3 => '_add_existing_field',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'left',
+      'field_product' => 'left',
+      'field_catalog_category' => 'left',
+      '_add_existing_field' => 'hidden',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'left' => 'div',
+      'right' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|product_display|form'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;

@@ -85,7 +85,7 @@ function siambiosys_homepage_views_default_views() {
   $handler->display->display_options['fields']['field_main_slideshow_image']['type'] = 'picture';
   $handler->display->display_options['fields']['field_main_slideshow_image']['settings'] = array(
     'picture_mapping' => 'banner_image_styles',
-    'fallback_image_style' => '',
+    'fallback_image_style' => 'large',
     'image_link' => '',
   );
   /* Field: Content: Title */

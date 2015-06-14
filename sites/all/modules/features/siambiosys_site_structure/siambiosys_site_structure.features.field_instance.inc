@@ -535,6 +535,55 @@ function siambiosys_site_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-enciclopedia-field_logo_medium_image'
+  $field_instances['node-enciclopedia-field_logo_medium_image'] = array(
+    'bundle' => 'enciclopedia',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_logo_medium_image',
+    'label' => 'Logo medium image',
+    'required' => FALSE,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => -4,
+    ),
+  );
+
   // Exported field_instance: 'node-homepage-field_coming_soon'
   $field_instances['node-homepage-field_coming_soon'] = array(
     'bundle' => 'homepage',
@@ -758,6 +807,12 @@ function siambiosys_site_structure_field_default_field_instances() {
         'type' => 'image',
         'weight' => 1,
       ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_main_slideshow_image',
@@ -807,6 +862,12 @@ function siambiosys_site_structure_field_default_field_instances() {
         'weight' => 1,
       ),
       'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1073,60 +1134,19 @@ function siambiosys_site_structure_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product_display-body'
-  $field_instances['node-product_display-body'] = array(
+  // Exported field_instance: 'node-product_display-field_catalog_category'
+  $field_instances['node-product_display-field_catalog_category'] = array(
     'bundle' => 'product_display',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 9,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -4,
-    ),
-  );
-
-  // Exported field_instance: 'node-product_display-field_catalog_category_'
-  $field_instances['node-product_display-field_catalog_category_'] = array(
-    'bundle' => 'product_display',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Choose the product type here.',
-    'display' => array(
-      'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1136,20 +1156,20 @@ function siambiosys_site_structure_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_catalog_category_',
-    'label' => 'Catalog Category  ',
+    'field_name' => 'field_catalog_category',
+    'label' => 'Catalog Category',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'taxonomy',
+      'module' => 'options',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_buttons',
       'weight' => 3,
     ),
   );
@@ -1203,60 +1223,6 @@ function siambiosys_site_structure_field_default_field_instances() {
       ),
       'type' => 'commerce_product_reference_autocomplete',
       'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-product_display-field_product_image'
-  $field_instances['node-product_display-field_product_image'] = array(
-    'bundle' => 'product_display',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_product_image',
-    'label' => 'Product Image',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 1,
-      'default_image' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'image',
-      'settings' => array(
-        'preview_image_style' => 'medium',
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'image_image',
-      'weight' => -3,
     ),
   );
 
@@ -1389,8 +1355,7 @@ function siambiosys_site_structure_field_default_field_instances() {
   t('Acknowledgements/Inspiration');
   t('Artist Statement');
   t('Body');
-  t('Catalog Category  ');
-  t('Choose the product type here.');
+  t('Catalog Category');
   t('Coming soon');
   t('Definition');
   t('Doctrine');
@@ -1399,11 +1364,11 @@ function siambiosys_site_structure_field_default_field_instances() {
   t('Influence Type');
   t('Landing Page Image');
   t('Link');
+  t('Logo medium image');
   t('Main Slideshow Image');
   t('Mentor Name');
   t('Mentor Title');
   t('Product');
-  t('Product Image');
   t('Product Type');
   t('Site Title');
   t('Statement');

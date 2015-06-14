@@ -1,7 +1,7 @@
 name = Siambiosys Commerce Store
 core = 7.x
 package = Siambiosys
-version = 7.x-1.0-beta2
+version = 7.x-1.0-beta3
 project = siambiosys_commerce_store
 dependencies[] = commerce_features
 dependencies[] = commerce_price
@@ -35,5 +35,7 @@ features[field_instance][] = field_collection_item-field_images-field_dimensions
 features[field_instance][] = field_collection_item-field_images-field_perspective_view
 features[field_instance][] = field_collection_item-field_images-field_side_view
 features[field_instance][] = field_collection_item-field_images-field_top_view
+features[taxonomy][] = color
+features[taxonomy][] = size
 features_exclude[dependencies][ds] = ds
 project path = sites/all/modules/features
