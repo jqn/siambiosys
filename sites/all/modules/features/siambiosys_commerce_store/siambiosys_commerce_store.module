@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Siambiosys Commerce Store feature.
+ */
+
+include_once 'siambiosys_commerce_store.features.inc';
