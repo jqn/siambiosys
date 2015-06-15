@@ -91,7 +91,7 @@ body {
 }
 /*** Slideshow Page ***/
 /* line 4, ../sass/overrides/pages/_slideshow.scss */
-.page-homepage .views-field-title {
+.page-home .views-field-title {
   position: absolute;
   bottom: 4%;
   right: 0;
@@ -102,7 +102,7 @@ body {
   width: 235px;
 }
 /* line 14, ../sass/overrides/pages/_slideshow.scss */
-.page-homepage .views-field-counter {
+.page-home .views-field-counter {
   float: left;
   padding: 10px 5px;
   cursor: pointer;
@@ -110,19 +110,19 @@ body {
   width: 20px;
 }
 /* line 20, ../sass/overrides/pages/_slideshow.scss */
-.page-homepage .views-field-counter:hover {
+.page-home .views-field-counter:hover {
   background: url(../images/page_nav_active.png) top left no-repeat;
 }
 /* line 24, ../sass/overrides/pages/_slideshow.scss */
-.page-homepage .active .views-field-counter {
+.page-home .active .views-field-counter {
   background: url(../images/page_nav_active.png) top left no-repeat;
 }
 /* line 27, ../sass/overrides/pages/_slideshow.scss */
-.page-homepage .views-content-counter {
+.page-home .views-content-counter {
   display: none;
 }
 /* line 30, ../sass/overrides/pages/_slideshow.scss */
-.page-homepage .views-slideshow-controls-bottom {
+.page-home .views-slideshow-controls-bottom {
   padding-top: 2%;
   margin-left: 46%;
 }
