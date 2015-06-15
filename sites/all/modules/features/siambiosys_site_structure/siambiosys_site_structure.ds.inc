@@ -5,6 +5,50 @@
  */
 
 /**
+ * Implements hook_ds_field_settings_info().
+ */
+function siambiosys_site_structure_ds_field_settings_info() {
+  $export = array();
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|about|default';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'about';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|about|default'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|news|default';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'news';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'links' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|news|default'] = $ds_fieldsetting;
+
+  return $export;
+}
+
+/**
  * Implements hook_ds_layout_settings_info().
  */
 function siambiosys_site_structure_ds_layout_settings_info() {
@@ -39,6 +83,44 @@ function siambiosys_site_structure_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['field_collection_item|eb_background|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'field_collection_item|field_acknowledgements|default';
+  $ds_layout->entity_type = 'field_collection_item';
+  $ds_layout->bundle = 'field_acknowledgements';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_title',
+        1 => 'field_mentor_name',
+        2 => 'field_mentor_title',
+        3 => 'field_statement',
+        4 => 'field_doctrine',
+        5 => 'field_influence_type',
+      ),
+    ),
+    'fields' => array(
+      'field_title' => 'ds_content',
+      'field_mentor_name' => 'ds_content',
+      'field_mentor_title' => 'ds_content',
+      'field_statement' => 'ds_content',
+      'field_doctrine' => 'ds_content',
+      'field_influence_type' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['field_collection_item|field_acknowledgements|default'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
@@ -77,6 +159,42 @@ function siambiosys_site_structure_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['field_collection_item|field_images|form'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|about|default';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'about';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_about_image',
+        1 => 'title',
+        2 => 'field_artist_statement',
+        3 => 'body',
+        4 => 'field_acknowledgements',
+      ),
+    ),
+    'fields' => array(
+      'field_about_image' => 'ds_content',
+      'title' => 'ds_content',
+      'field_artist_statement' => 'ds_content',
+      'body' => 'ds_content',
+      'field_acknowledgements' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|about|default'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
@@ -211,6 +329,42 @@ function siambiosys_site_structure_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['node|main_slideshow_images|full'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|news|default';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'news';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_news_image',
+        2 => 'body',
+        3 => 'field_news_video',
+        4 => 'links',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_news_image' => 'ds_content',
+      'body' => 'ds_content',
+      'field_news_video' => 'ds_content',
+      'links' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|news|default'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;

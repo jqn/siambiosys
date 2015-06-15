@@ -18,16 +18,8 @@ function siambiosys_site_structure_ctools_plugin_api($module = NULL, $api = NULL
  */
 function siambiosys_site_structure_node_info() {
   $items = array(
-    '_links_content' => array(
-      'name' => t('Links content'),
-      'base' => 'node_content',
-      'description' => t('Content related to the links page.'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
     'about' => array(
-      'name' => t('Bio'),
+      'name' => t('About'),
       'base' => 'node_content',
       'description' => t('Personal Statement and Acknowledgements.'),
       'has_title' => '1',
@@ -62,6 +54,14 @@ function siambiosys_site_structure_node_info() {
       'name' => t('Landing Page'),
       'base' => 'node_content',
       'description' => t('Front page content.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'links' => array(
+      'name' => t('Links'),
+      'base' => 'node_content',
+      'description' => t('Content related to the links page.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

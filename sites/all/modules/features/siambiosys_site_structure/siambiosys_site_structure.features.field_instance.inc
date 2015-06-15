@@ -23,7 +23,7 @@ function siambiosys_site_structure_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 3,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -55,7 +55,7 @@ function siambiosys_site_structure_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 4,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -83,11 +83,11 @@ function siambiosys_site_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -118,11 +118,11 @@ function siambiosys_site_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -153,16 +153,16 @@ function siambiosys_site_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_statement',
-    'label' => 'Statement',
+    'label' => 'Brief statement of interests and influences.',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -179,9 +179,48 @@ function siambiosys_site_structure_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-_links_content-body'
-  $field_instances['node-_links_content-body'] = array(
-    'bundle' => '_links_content',
+  // Exported field_instance:
+  // 'field_collection_item-field_acknowledgements-field_title'
+  $field_instances['field_collection_item-field_acknowledgements-field_title'] = array(
+    'bundle' => 'field_acknowledgements',
+    'default_value' => array(
+      0 => array(
+        'value' => 'Mentors',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'This field modifies title section.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_title',
+    'label' => 'Title',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'node-about-body'
+  $field_instances['node-about-body'] = array(
+    'bundle' => 'about',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -191,7 +230,7 @@ function siambiosys_site_structure_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -205,21 +244,22 @@ function siambiosys_site_structure_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
+    'label' => 'Bio',
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'display_summary' => 1,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -4,
+      'weight' => 2,
     ),
   );
 
@@ -230,7 +270,7 @@ function siambiosys_site_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
@@ -281,7 +321,7 @@ function siambiosys_site_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'field_collection',
         'settings' => array(
           'add' => 'Add',
@@ -324,7 +364,7 @@ function siambiosys_site_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -771,6 +811,63 @@ function siambiosys_site_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-links-field_links'
+  $field_instances['node-links-field_links'] = array(
+    'bundle' => 'links',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_links',
+    'label' => 'links',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => -4,
+    ),
+  );
+
   // Exported field_instance:
   // 'node-main_slideshow_images-field_main_slideshow_image'
   $field_instances['node-main_slideshow_images-field_main_slideshow_image'] = array(
@@ -907,7 +1004,7 @@ function siambiosys_site_structure_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -951,7 +1048,7 @@ function siambiosys_site_structure_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'large',
+          'image_style' => '',
         ),
         'type' => 'image',
         'weight' => 1,
@@ -999,10 +1096,9 @@ function siambiosys_site_structure_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'link',
         'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 2,
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1112,6 +1208,47 @@ function siambiosys_site_structure_field_default_field_instances() {
         ),
         'type' => 'text_summary_or_trimmed',
         'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => TRUE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -4,
+    ),
+  );
+
+  // Exported field_instance: 'node-product_display-body'
+  $field_instances['node-product_display-body'] = array(
+    'bundle' => 'product_display',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
       ),
     ),
     'entity_type' => 'node',
@@ -1354,7 +1491,9 @@ function siambiosys_site_structure_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Acknowledgements/Inspiration');
   t('Artist Statement');
+  t('Bio');
   t('Body');
+  t('Brief statement of interests and influences.');
   t('Catalog Category');
   t('Coming soon');
   t('Definition');
@@ -1371,11 +1510,13 @@ function siambiosys_site_structure_field_default_field_instances() {
   t('Product');
   t('Product Type');
   t('Site Title');
-  t('Statement');
   t('Tags');
   t('Term');
+  t('This field modifies title section.');
+  t('Title');
   t('Upload an image to go with this article.');
   t('Video');
+  t('links');
 
   return $field_instances;
 }
