@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Siambiosys Site Views feature.
+ */
+
+include_once 'siambiosys_site_views.features.inc';
