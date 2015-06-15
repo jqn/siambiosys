@@ -16,10 +16,10 @@ body {
 
 /* line 12, ../sass/overrides/_theme.scss */
 #page-header {
-  /*margin-bottom: 20px;*/
-  /*padding-top: 20px;*/
-  /*z-index: 1;*/
-  /*position: relative;*/
+  margin-bottom: 20px;
+  padding-top: 20px;
+  z-index: 1;
+  position: relative;
 }
 /* line 18, ../sass/overrides/_theme.scss */
 #page-header:before {
@@ -91,6 +91,10 @@ body {
 }
 /*** Slideshow Page ***/
 /* line 4, ../sass/overrides/pages/_slideshow.scss */
+.page-home .views_slideshow_cycle_main views_slideshow_main viewsSlideshowCycle-processed {
+  margin-top: 40px;
+}
+/* line 7, ../sass/overrides/pages/_slideshow.scss */
 .page-home .views-field-title {
   position: absolute;
   bottom: 4%;
@@ -101,7 +105,7 @@ body {
   opacity: 0.5;
   width: 235px;
 }
-/* line 14, ../sass/overrides/pages/_slideshow.scss */
+/* line 17, ../sass/overrides/pages/_slideshow.scss */
 .page-home .views-field-counter {
   float: left;
   padding: 10px 5px;
@@ -109,19 +113,19 @@ body {
   background: url(../images/page_nav_inactive.png) top left no-repeat;
   width: 20px;
 }
-/* line 20, ../sass/overrides/pages/_slideshow.scss */
+/* line 23, ../sass/overrides/pages/_slideshow.scss */
 .page-home .views-field-counter:hover {
   background: url(../images/page_nav_active.png) top left no-repeat;
 }
-/* line 24, ../sass/overrides/pages/_slideshow.scss */
+/* line 27, ../sass/overrides/pages/_slideshow.scss */
 .page-home .active .views-field-counter {
   background: url(../images/page_nav_active.png) top left no-repeat;
 }
-/* line 27, ../sass/overrides/pages/_slideshow.scss */
+/* line 30, ../sass/overrides/pages/_slideshow.scss */
 .page-home .views-content-counter {
   display: none;
 }
-/* line 30, ../sass/overrides/pages/_slideshow.scss */
+/* line 33, ../sass/overrides/pages/_slideshow.scss */
 .page-home .views-slideshow-controls-bottom {
   padding-top: 2%;
   margin-left: 46%;
