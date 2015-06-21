@@ -71,23 +71,6 @@ function siambiosys_homepage_views_default_views() {
   $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartype'] = 1;
   $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartypenobg'] = 1;
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Main Slideshow Image */
-  $handler->display->display_options['fields']['field_main_slideshow_image']['id'] = 'field_main_slideshow_image';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['table'] = 'field_data_field_main_slideshow_image';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['field'] = 'field_main_slideshow_image';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['label'] = '';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_main_slideshow_image']['alter']['path'] = '[field_main_slideshow_image]';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['alter']['replace_spaces'] = TRUE;
-  $handler->display->display_options['fields']['field_main_slideshow_image']['alter']['path_case'] = 'lower';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_main_slideshow_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['type'] = 'picture';
-  $handler->display->display_options['fields']['field_main_slideshow_image']['settings'] = array(
-    'picture_mapping' => 'banner_image_styles',
-    'fallback_image_style' => 'large',
-    'image_link' => '',
-  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -104,6 +87,15 @@ function siambiosys_homepage_views_default_views() {
   $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['counter']['counter_start'] = '1';
   $handler->display->display_options['fields']['counter']['reverse'] = 0;
+  /* Field: Content: Main View */
+  $handler->display->display_options['fields']['field_main_view']['id'] = 'field_main_view';
+  $handler->display->display_options['fields']['field_main_view']['table'] = 'field_data_field_main_view';
+  $handler->display->display_options['fields']['field_main_view']['field'] = 'field_main_view';
+  $handler->display->display_options['fields']['field_main_view']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_main_view']['settings'] = array(
+    'image_style' => 'banner_style',
+    'image_link' => '',
+  );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -114,7 +106,7 @@ function siambiosys_homepage_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'main_slideshow_images' => 'main_slideshow_images',
+    'product_display' => 'product_display',
   );
 
   /* Display: Page */

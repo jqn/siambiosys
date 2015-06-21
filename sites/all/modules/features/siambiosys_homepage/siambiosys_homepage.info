@@ -1,7 +1,7 @@
 name = Siambiosys homepage
 core = 7.x
 package = Siambiosys
-version = 7.x-1.0-beta2
+version = 7.x-1.0-beta3
 project = siambiosys_homepage
 dependencies[] = views
 dependencies[] = views_slideshow
