@@ -9,6 +9,20 @@
  */
 function siambiosys_commerce_store_commerce_product_default_types() {
   $items = array(
+    'apparel' => array(
+      'type' => 'apparel',
+      'name' => 'Apparel',
+      'description' => '',
+      'help' => '',
+      'revision' => 1,
+    ),
+    'prints' => array(
+      'type' => 'prints',
+      'name' => 'Prints',
+      'description' => '',
+      'help' => '',
+      'revision' => 1,
+    ),
     'product' => array(
       'type' => 'product',
       'name' => 'Product',
