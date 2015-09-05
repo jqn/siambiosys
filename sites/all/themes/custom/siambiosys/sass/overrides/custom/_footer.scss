@@ -1,0 +1,133 @@
+//
+// Footer
+// --------------------------------------------------
+
+//** Get that junk off the edges of the DOM
+.region-footer-upper,
+.region-footer-lower {
+  @include container-bootstrap;
+  p { margin-bottom: 0; }
+}
+
+//## Upper Footer
+//
+//== Social media links
+#footer-upper {
+  background-color: $shn-gold;
+  padding-top:    $padding-base-vertical;
+  padding-bottom: $padding-base-vertical;
+
+  //** Sponsorship Links
+  #block-boxes-sponsorships-trips {
+    float: left;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-large;
+    letter-spacing: $letter-spacing-large;
+    line-height: 1em;
+    height: 32px;
+    padding-top: 25px - $font-size-large/2; // (40px box height + 10px padding)/2 - height of text/2
+
+    a {
+      color: $text-color;
+    }
+    // Center on small screen
+    @media (max-width: $screen-sm-max) {
+      width: 100%;
+      text-align: center;
+      font-size: $font-size-base;
+    }
+  }
+
+  //** Social Media Links
+  #block-boxes-social-media-icons {
+    float: right;
+    height: 40px; // Weird sizing.
+
+    // All the links are floating here. Created some weird sizing.
+    .social-links {
+      @include clearfix;
+    }
+    a {
+      @include inline-block;
+      float: left;
+      margin-left: 10px;
+      text-indent: -9999px;
+      height: 40px;
+      width: 40px;
+      background-size: 40px;
+      background-position: 0 0;
+
+      &:hover, &:focus {
+        background-position: 0 40px;
+      }
+      &:active {
+        background-color: lighten($shn-gold, 15%);
+        border-radius: 50%;
+      }
+
+      //** Variable for each site
+      $social-links: facebook, instagram, twitter, googleplus, youtube;
+      //** Now loop through them to set each one.
+      @each $link in $social-links {
+        &.#{$link} {
+          background-image: url('../images/social_icon-#{$link}.png');
+        }
+      }
+    }
+    // Center icons on small screen.
+    @media (max-width: $screen-sm-max) {
+      width: 100%;
+      margin-top: $margin-base-vertical;
+      .social-links {
+        text-align: center;
+        a { float: none; }
+      }
+    }
+  }
+
+}
+
+//## Lower Footer
+//
+//== 
+.region-footer-lower {
+  background-image: url('../images/footer_bg.png');
+  background-position: right 100px top 0;
+  background-repeat: no-repeat;
+  background-size: 500px;
+  color: $white;
+  font-size: $font-size-small;
+  @media (max-width: $screen-xs-max) {
+    background-position: left top;
+  }
+
+  //** Financial Integrity
+  #block-boxes-financial-integrity {
+    @include make-sm-column(6,0);
+    @include make-xs-column(12,0);
+    h2 {
+      font-family: $font-family-serif;
+      font-size: $font-size-large;
+      font-weight: $font-weight-normal;
+      text-transform: none;
+    }
+    a {
+      color: $white;
+      text-decoration: underline;
+    }
+    img {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+
+  //** Logo Block
+  #block-boxes-footer-logo {
+    float: right;
+    margin-top: 100px;
+
+    a { color: $white; }
+    // Spacing for Logo
+    img { margin-bottom: 30px; }
+  }
+}

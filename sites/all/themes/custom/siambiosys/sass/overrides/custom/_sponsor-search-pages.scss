@@ -1,0 +1,126 @@
+body.page-sponsorships {
+  .views-row {
+    @include make-xs-column(12);
+    @include make-sm-column(6);
+    @include make-md-column(4);
+    @include make-lg-column(3);
+    margin-bottom: 20px;
+
+    .node-teaser {
+      padding: $padding-small-vertical $padding-small-horizontal;
+      border: $border;
+      border-radius: $border-radius-base;
+      background-color: $teaser-bg;
+    }
+
+    h2 {
+      font-family: $font-family-sans-condensed;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 0;
+    }
+    p.btn { display: block; }
+    a {
+      color: $text-color;
+      &:hover,&:focus {
+        text-decoration: none;
+      }
+    }
+
+    // Country
+    .field-name-field-country {
+      float: right;
+      color: $gray-light;
+      font-size: $font-size-small;
+    }
+    // Name
+    .field-name-field-given-name,
+    .field-name-field-family-name {
+      font-family: $font-family-sans-condensed;
+      line-height: 1;
+    }
+    // Image
+    .field-name-field-profile-image {
+      margin-bottom: 7px;
+      margin-top: 5px;
+    }
+  }
+
+
+  // Responsive
+  // -----
+  @media (max-width: $screen-xs) {
+    .views-row {
+      padding-right: 0;
+      padding-left:  0;
+    }
+  }
+
+  .child-info-teaser {
+    @include clearfix;
+    margin-bottom: 5px;
+  }
+
+
+  // All Symbols
+  // ----
+  $symbol-size: 24px; // Using this will mimic equal_heights
+  .percent-sponsored-wrapper,
+  .gender-male-wrapper,
+  .gender-female-wrapper,
+  .medical-status {
+    float: left;
+  }
+  .percent-sponsored,
+  .gender-symbol,
+  .medical-status-symbol {
+    width: $symbol-size;
+    height: $symbol-size;
+    text-indent: -9999px;
+  }
+  .medical-status,
+  .gender-male-wrapper,
+  .gender-female-wrapper { width: 18%; }
+  .percent-sponsored-wrapper { width: 64%; }
+  // Percent Sponsored
+  // Set all the symbols
+  $percentages: 0 25 50 75 100;
+  @each $amount in $percentages {
+    .percent-sponsored-#{$amount} {
+      background: url('../images/heart_#{$amount}-sm@2x.png') center center / ($symbol-size - 2px) no-repeat;
+    }
+  }
+  .percent-sponsored {
+    width: $symbol-size - 2px;
+    height: $symbol-size - 2px;
+    float: left;
+  }
+  .amount-sponsored {
+    font-family: $font-family-sans-condensed;
+    font-size: 12px;
+    color: $red;
+    line-height: 1;
+    padding-left: 3px;
+    padding-top: 3px;
+    float: left;
+  }
+  // Gender
+  .gender-symbol {
+    &.gender-male   { background: url('../images/gender-boy-sm@2x.png') center center / $symbol-size no-repeat; }
+    &.gender-female { background: url('../images/gender-girl-sm@2x.png') center center / $symbol-size no-repeat;}
+  }
+  .medical-status-symbol {
+    &.hivpositive,
+    &.hivaffected {
+      background: url('../images/hiv-icon-sm@2x.png') center center / $symbol-size no-repeat;
+    }
+  }
+
+  // Make sidebar a tad bigger between small and medium devices.
+  //   Issue was with radio gender select list.
+  @media (min-width: $screen-sm) and (max-width: $screen-md) {
+    aside.col-sm-3   { width: 35%; }
+    section.col-sm-9 { width: 65%; }
+  }
+
+}

@@ -1,0 +1,125 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-variant($color, $background, $border) {
+  background-color: $background;
+  @include background-image(linear-gradient(0deg, $background 50%, lighten($background, 7%) 50%));
+  border: 1px solid $border;
+  color: $color;
+  box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.75);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+    background-image: none;
+    background-color: lighten($background, 5%);
+    border-color: $border;
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+    background-color: $background;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: $background;
+          border-color: $border;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
+}
+
+@mixin btn {
+  @include inline-block;
+  @include user-select(none);
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-weight: $btn-font-weight;
+  line-height: 1.428571429;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border-radius: $border-radius-base;
+}
+
+// Button sizes
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+// Plain Link
+@mixin plain-link {
+  color: $link-color;
+  text-decoration: underline;
+
+  &:hover, &:active {
+    color: $link-hover-color;
+  }
+}
+
+@mixin btn-purchase {
+  @include text-shadow(0 1px 0 rgba(255,255,255,0.75));
+  font-weight: $font-weight-bold;
+  background-color: $brand-purchase-base;
+
+  //** This one doesn't fit into the button-variant mixin, so copied it over
+  //** manually for better color control.
+  @include background-image(linear-gradient(0deg, $brand-purchase-bottom 50%, $brand-purchase-top 50%));
+  border: 1px solid $brand-purchase-border;
+  color: $text-color;
+  box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.75);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $text-color;
+    background-image: none;
+    background-color: $brand-purchase-top;
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+    background-color: $brand-purchase-bottom;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: $brand-purchase-base;
+          border-color: $brand-purchase-border;
+    }
+  }
+
+  .badge {
+    color: $brand-purchase-base;
+    background-color: $text-color;
+  }
+}

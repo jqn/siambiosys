@@ -1,0 +1,121 @@
+
+// Remove padding from sidebar. Already on container.
+aside.col-sm-3 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+//## Filter Block on Child Search Pages
+//
+//==
+#views-exposed-form-sponsorships-child-filters-page, // Child
+#block-views-exp-sponsorships-filters-page {
+  @include container-gray;
+  margin-bottom: 40px;
+
+  // Padding on form elements
+  .views-exposed-form .views-exposed-widget {
+    padding: 0;
+    margin-bottom: 10px;
+    clear: left;
+
+    label {
+      text-transform: uppercase;
+      letter-spacing: $letter-spacing-xl;
+      font-size: 15px;
+    }
+    // Space between month and year.
+    .date-month {
+      margin-right: 10px;
+    }
+  }
+  // Submit button to be blue.
+  .btn-primary {
+    @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+    margin-top: 0;
+  }
+
+  //## Select Gender Radios
+  //
+  //==
+  #edit-field-gender-value-wrapper {
+    width: 100%;
+  }
+  #edit-field-gender-value {
+    @include clearfix;
+    border: $border;
+    border-radius: $border-radius-large;
+
+    .radio input[type="radio"] {
+      display: none;
+    }
+    // Prevent spacing issue when no radio is selected.
+    .form-type-radios { @include clearfix; }
+    .form-type-radio {
+      @include make-xs-column(4, 0);
+      margin-bottom: 0;
+
+      .views-widget { width: 99%; } // Removes a 1px white line at far right of list.
+
+      label {
+        display: block;
+        margin: 0;
+        padding: 5px;
+        background-color: $white;
+        text-align: center;
+        letter-spacing: 1px;
+
+        &:active { background-color: $cool-gray-light; } // When clicking
+      }
+      // Set Label Styles
+      // -----
+      //** Either & First Border Radius
+      label[for="edit-field-gender-value-all"] { border-radius: $border-radius-large 0 0 $border-radius-large; }
+      //** Boy
+      label[for="edit-field-gender-value-male"] {
+        color: $boy;
+        border-left:  $border;
+        border-right: $border;
+      }
+      //** Girl & Last Border Radius
+      label[for="edit-field-gender-value-female"] {
+        color: $girl;
+        border-radius: 0 $border-radius-large $border-radius-large 0; // Last Item Radius
+      }
+
+      // Checkbox coloring
+      // -----
+      //** Either Gender
+      #edit-field-gender-value-all {
+        &:checked+label {
+          background-color: $shn-lime;
+          color: $white;
+        }
+      }
+      //** Male Gender
+      #edit-field-gender-value-male {        
+        &:checked+label {
+          background-color: $boy;
+          color: $white;
+          border-color: $boy;
+        }
+      }
+      //** Female Gender
+      #edit-field-gender-value-female {
+        &:checked+label {
+          background-color: $girl;
+          color: $white;
+        }
+      }
+    }
+    // Resets radio alignment since these are inline.
+    .radio+.radio {
+      margin-top: 0;
+    }
+    // Prevent ajax throbber from moving buttons all over.
+    .ajax-progress-throbber {
+      position: absolute;
+      top: 6px;
+    }
+  }
+}
