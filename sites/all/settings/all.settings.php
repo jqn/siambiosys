@@ -31,6 +31,7 @@ ini_set('session.save_handler',     'user');
 ini_set('session.use_only_cookies', 1);
 ini_set('session.use_trans_sid',    0);
 ini_set('url_rewriter.tags',        '');
+ini_set('memory_limit','1200M');
 
 // Security settings.
 $conf['dblog_row_limit'] = 1000000;
@@ -43,14 +44,13 @@ $conf['dblog_row_limit'] = 1000000;
 */
 umask(0002);
 
-ini_set('memory_limit', '256M');
 
 /**
  * Add the site-specific settings.
  */
-// if (file_exists(DRUPAL_ROOT .'/sites/all/settings/' . $conf['drupal_env'] . '.settings.php')) {
-//   include_once DRUPAL_ROOT .'/sites/all/settings/' . $conf['drupal_env'] . '.settings.php';
-// }
+if (file_exists(DRUPAL_ROOT .'/sites/all/settings/dev.settings.php')) {
+  include_once DRUPAL_ROOT .'/sites/all/settings/dev.settings.php';
+}
 // Fail safe, if environment isn't set correctly, we'll just assume production.
 if (file_exists(DRUPAL_ROOT .'/sites/all/settings/prod.settings.php')) {
   include_once DRUPAL_ROOT .'/sites/all/settings/prod.settings.php';
