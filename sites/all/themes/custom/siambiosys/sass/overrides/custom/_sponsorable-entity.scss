@@ -1,0 +1,169 @@
+.ds-header {
+  padding-left: 0;
+  padding-right: 0;
+  //** Country and Registration Number
+  .group-reg-country {
+    @include make-sm-column(2,0);
+    float: right !important;
+  }
+  .field-name-field-country,
+  .field-name-field-reg {
+    float: right;
+    clear: right;
+    color: $silver;
+    font-weight: $font-weight-normal;
+  }
+
+  //** Name
+  .field-name-full-name {
+    @include make-sm-column(7,0);
+    float: right !important;
+    h2 { margin-top: 0; }
+  }
+  //** Image
+  .field-name-field-profile-image {
+    @include make-xs-column(12,0);
+    @include make-sm-column(3,0);
+    padding-right: 20px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  //## Child Summary block
+  //
+  //==
+  $symbol-height: 60px; // Using this will mimic equal_heights
+  .field-name-child-info {
+    @include make-xs-column(12,0);
+    @include make-sm-column(9,0);
+    @include clearfix;
+    border: $border;
+
+    .child-info-cell {
+      @include make-xs-column(12,0);
+      @include make-sm-column(4,0);
+      text-align: center;
+      text-transform: uppercase;
+      padding: 20px 0 12px;
+    }
+
+    //** Gender
+    .gender-male-wrapper,
+    .gender-female-wrapper {
+      border-left: $border;
+      border-right: $border;
+    }
+    .gender-male-wrapper   .age { color: $boy; }
+    .gender-female-wrapper .age { color: $girl; }
+
+
+    // All Symbols
+    // ----
+    .percent-sponsored,
+    .gender-symbol,
+    .medical-status-symbol {
+      height: $symbol-height;
+      text-indent: -9999px;
+      margin: 0 auto 15px;
+    }
+    // Percent Sponsored
+    // Set all the symbols
+    $percentages: 0 25 50 75 100;
+    @each $amount in $percentages {
+      .percent-sponsored-#{$amount} {
+        background: url('../images/percent-#{$amount}.png') center center / 56px 51px no-repeat;
+      }
+    }
+    .percent-sponsored {
+      width: 58px;
+    }
+    // Gender
+    .gender-symbol {
+      width: 60px;
+      &.gender-male {
+        background: url('../images/gender-boy-lg@2x.png') center center / 48px 57px no-repeat;
+      }
+      &.gender-female {
+        background: url('../images/gender-girl-lg@2x.png') center center / 33px 57px no-repeat;
+      }
+    }
+    // Medical Status
+    .medical-status-wrapper {
+      color: $red;
+    }
+    .medical-status-symbol {
+      width: 51px;
+
+      &.hivpositive,
+      &.hivaffected {
+        background: url('../images/hiv-icon.png') center center / 51px 51px no-repeat;
+      }
+    }
+
+    // Gray Text
+    .amount-needs,
+    .birthday {
+      color: $gray-light;
+      font-size: 13px;
+    }
+  }
+
+
+  // Responsive considerations for Child Summary Block
+  // ----
+  @media (max-width: $screen-xs-max) {
+    &, .field-name-field-profile-image {
+      margin-bottom: 20px;
+      padding-right: 0;
+    }
+    .field-name-child-info {
+      .child-info-cell { text-align: left; }
+      .gender-male-wrapper,
+      .gender-female-wrapper {
+        border-left: none;
+        border-right: none;
+        border-top: $border;
+        border-bottom: $border;
+      }
+      // Symbol on left
+      .percent-sponsored,
+      .gender-symbol,
+      .medical-status-symbol {
+        float: left;
+        margin: 0 20px;
+      }
+    }
+  }
+
+}
+
+
+//## Main content of sponsorable entity
+//
+//==
+.ds-left {
+  padding-left: 0px;
+  padding-top: 40px;
+
+  // Location information.
+  .field-name-field-location,
+  .field-name-field-grade,
+  .field-name-field-school {
+    color: $gray-light;
+  }
+
+  // About Child Name
+  .field-name-about-label {
+    margin-top: 30px;
+
+    h2 {
+      font-weight: $font-weight-normal;
+      font-family: $font-family-serif;
+      font-size: 32px;
+      text-transform: none;
+    }
+  }
+
+}

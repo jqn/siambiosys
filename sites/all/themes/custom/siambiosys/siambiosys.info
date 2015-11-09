@@ -1,0 +1,69 @@
+name = Siambiosys Theme
+description = Custom theme based on the Bootstrap framework - 7.x-3.3.5
+core = 7.x
+base theme = bootstrap
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+
+regions[navigation]     = 'Navigation'
+regions[header]         = 'Top Bar'
+regions[sub_header]     = 'Top Bar (Below Title)'
+regions[highlighted]    = 'Highlighted'
+regions[messages]       = 'Messages'
+regions[content]        = 'Content Area'
+regions[content_footer] = 'Content Area Footer'
+regions[sidebar_first]  = 'Primary Sidebar'
+regions[sidebar_second] = 'Secondary Sidebar'
+regions[footer_upper]   = 'Footer Upper'
+regions[footer_lower]   = 'Footer Lower'
+regions[page_top]       = 'Page top'
+regions[page_bottom]    = 'Page bottom'
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Stylesheets
+;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][] = css/style.css
+
+
+; For information on choosing the desired method, please read the Drupal
+; Bootstrap sub-theme "how-to" documentation:
+; https://drupal.org/node/1978010
+
+; ;----------------------------------
+; ; METHOD 1: Bootstrap Source Files
+; ;----------------------------------
+;
+; ;;;;;;;;;;;;;;;;;;;;;
+; ;; Scripts
+; ;;;;;;;;;;;;;;;;;;;;;
+;
+; scripts[] = 'js/affix.js'
+; scripts[] = 'js/alert.js'
+; scripts[] = 'js/button.js'
+; scripts[] = 'js/carousel.js'
+; scripts[] = 'js/collapse.js'
+; scripts[] = 'js/dropdown.js'
+; scripts[] = 'js/modal.js'
+; scripts[] = 'js/tooltip.js'
+; scripts[] = 'js/popover.js'
+; scripts[] = 'js/scrollspy.js'
+; scripts[] = 'js/tab.js'
+; scripts[] = 'js/transition.js'
+scripts[] = 'js/mmg_custom.js'
+;
+; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
+; settings[bootstrap_cdn] = ''
+
+
+; ;-------------------------
+; ; METHOD 2: Bootstrap CDN
+; ;-------------------------
+;
+; Method 2 uses BootstrapCDN, the only thing you might need to provide here
+; is overrides to Bootstrap theme settings. Copy them here from the base theme
+; to override.

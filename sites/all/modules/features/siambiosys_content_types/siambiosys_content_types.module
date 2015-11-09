@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Siambiosys Content Types feature.
+ */
+
+include_once 'siambiosys_content_types.features.inc';

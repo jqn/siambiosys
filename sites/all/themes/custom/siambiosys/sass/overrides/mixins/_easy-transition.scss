@@ -1,0 +1,9 @@
+// Make it easier to add the same transition to multiple properties.
+@mixin easy_transition($properties: all, $duration: 100ms, $func: ease-in) {
+  $transitions: ();
+  @for $i from 1 through length($properties) {
+    $property: nth($properties, $i);
+    $transitions: append($transitions, $property $duration $func);
+  }
+  @include transition($transitions);
+}

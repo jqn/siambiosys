@@ -1,0 +1,39 @@
+
+//** Dope page-headers
+#page-header {
+  @include clearfix;
+  text-align: center;
+  h1, .h1 {
+    @include inline-block;
+    margin-top:    50px;
+    margin-bottom: 50px;
+    padding: 12px 30px 8px 45px;
+    border: 5px solid $white;
+    letter-spacing: .5em;
+    color: white;
+  }
+  // Look good on mobile
+  @media (max-width: $screen-sm-max) {
+    h1, .h1 {
+      font-size: $font-size-h4;
+      width: 95%;
+      padding: 10px;
+      text-align: justify;
+      letter-spacing: 0.3em;
+    }
+  }
+}
+
+
+//** Set Images
+$pages: sponsorships, content, user;
+@each $page in $pages {
+  .page-header-#{$page} {
+    background-image: url('../images/headers/#{$page}.jpg');
+    background-size: 100% auto, cover;
+    background-attachment: fixed;
+    background-position: top;
+
+    @media (max-width: 1600px) {background-size: 1600px auto, cover;}
+  }
+}
