@@ -415,40 +415,31 @@ function siambiosys_site_structure_ds_layout_settings_info() {
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'product_display';
   $ds_layout->view_mode = 'form';
-  $ds_layout->layout = 'ds_2col';
+  $ds_layout->layout = 'ds_1col';
   $ds_layout->settings = array(
     'regions' => array(
-      'left' => array(
+      'ds_content' => array(
         0 => 'title',
         1 => 'field_product',
-        2 => 'field_catalog_category',
-        3 => 'body',
-      ),
-      'right' => array(
-        4 => 'field_main_view',
-        5 => 'field_side_view',
-        6 => 'field_top_view',
-        7 => 'field_dimensions_view',
+        2 => 'body',
+        3 => 'field_catalog_category',
+        4 => 'field_add_to_slideshow',
       ),
       'hidden' => array(
-        8 => '_add_existing_field',
+        5 => '_add_existing_field',
       ),
     ),
     'fields' => array(
-      'title' => 'left',
-      'field_product' => 'left',
-      'field_catalog_category' => 'left',
-      'body' => 'left',
-      'field_main_view' => 'right',
-      'field_side_view' => 'right',
-      'field_top_view' => 'right',
-      'field_dimensions_view' => 'right',
+      'title' => 'ds_content',
+      'field_product' => 'ds_content',
+      'body' => 'ds_content',
+      'field_catalog_category' => 'ds_content',
+      'field_add_to_slideshow' => 'ds_content',
       '_add_existing_field' => 'hidden',
     ),
     'classes' => array(),
     'wrappers' => array(
-      'left' => 'div',
-      'right' => 'div',
+      'ds_content' => 'div',
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',
@@ -468,13 +459,15 @@ function siambiosys_site_structure_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'field_product_image',
-        1 => 'title',
+        0 => 'title',
+        1 => 'product:field_product_image',
+        2 => 'body',
       ),
     ),
     'fields' => array(
-      'field_product_image' => 'ds_content',
       'title' => 'ds_content',
+      'product:field_product_image' => 'ds_content',
+      'body' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
