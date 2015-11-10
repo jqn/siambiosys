@@ -87,15 +87,6 @@ function siambiosys_homepage_views_default_views() {
   $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['counter']['counter_start'] = '1';
   $handler->display->display_options['fields']['counter']['reverse'] = 0;
-  /* Field: Content: Main View */
-  $handler->display->display_options['fields']['field_main_view']['id'] = 'field_main_view';
-  $handler->display->display_options['fields']['field_main_view']['table'] = 'field_data_field_main_view';
-  $handler->display->display_options['fields']['field_main_view']['field'] = 'field_main_view';
-  $handler->display->display_options['fields']['field_main_view']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_main_view']['settings'] = array(
-    'image_style' => 'banner_style',
-    'image_link' => '',
-  );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -111,7 +102,7 @@ function siambiosys_homepage_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'home';
+  $handler->display->display_options['path'] = 'home-tmp';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'HOME';
   $handler->display->display_options['menu']['weight'] = '0';
