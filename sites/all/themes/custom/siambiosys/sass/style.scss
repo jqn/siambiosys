@@ -7,9 +7,9 @@
 // --------------------------------------------------
 
 // Compass cross browser compatiblity tools.
-// @import "rgbapng";
 @import "compass/css3";
 @import "compass/css3/user-interface";
+// @import "rgbapng";
 
 // Better than Drupal's clearfix.
 @import "compass/utilities/general/clearfix";
@@ -20,83 +20,67 @@
 // --------------------------------------------------
 
 // Core variables and mixins
-// @import "overrides/__mixins.scss";
-// @import "overrides/__variables.scss";
+@import "overrides/__variables.scss";
+@import "overrides/__mixins.scss";
 
 // Reset and dependencies
 // ----------
-// @import "overrides/reset/_glyphicons.scss";
 // @import "overrides/reset/_normalize.scss";
 // @import "overrides/reset/_print.scss";
+// @import "overrides/reset/_glyphicons.scss";
 
 // Core CSS
 // ----------
-// @import "overrides/core/_code.scss";
-// @import "overrides/core/_footer.scss";
-// @import "overrides/core/_grid.scss";
-// @import "overrides/core/_header.scss";
-// @import "overrides/core/_sidebar.scss";
-// @import "overrides/core/_buttons.scss";
-// @import "overrides/core/_forms.scss";
 // @import "overrides/core/_scaffolding.scss";
-// @import "overrides/core/_tables.scss";
-// @import "overrides/core/_theme.scss";
 // @import "overrides/core/_type.scss";
+// @import "overrides/core/_code.scss";
+// @import "overrides/core/_grid.scss";
+// @import "overrides/core/_tables.scss";
+// @import "overrides/core/_forms.scss";
+// @import "overrides/core/_buttons.scss";
 
 // Components
 // ----------
-// @import "overrides/components/_alerts.scss";
-// @import "overrides/components/_badges.scss";
-// @import "overrides/components/_breadcrumbs.scss";
-// @import "overrides/components/_button-groups.scss";
-// @import "overrides/components/_close.scss";
 // @import "overrides/components/_component-animations.scss";
 // @import "overrides/components/_dropdowns.scss";
+// @import "overrides/components/_button-groups.scss";
 // @import "overrides/components/_input-groups.scss";
-// @import "overrides/components/_jumbotron.scss";
-// @import "overrides/components/_labels.scss";
-// @import "overrides/components/_list-group.scss";
-// @import "overrides/components/_media.scss";
-// @import "overrides/components/_pager.scss";
-// @import "overrides/components/_pagination.scss";
-// @import "overrides/components/_panels.scss";
-// @import "overrides/components/_progress-bars.scss";
-// @import "overrides/components/_responsive-embed.scss";
-// @import "overrides/components/_thumbnails.scss";
-// @import "overrides/components/_wells.scss";
-// @import "overrides/components/_navbar.scss";
 // @import "overrides/components/_navs.scss";
-// @import "overrides/components/_sponsor-commerce-block.scss";
+// @import "overrides/components/_navbar.scss";
+// @import "overrides/components/_breadcrumbs.scss";
+// @import "overrides/components/_pagination.scss";
+// @import "overrides/components/_pager.scss";
+// @import "overrides/components/_labels.scss";
+// @import "overrides/components/_badges.scss";
+// @import "overrides/components/_jumbotron.scss";
+// @import "overrides/components/_thumbnails.scss";
+// @import "overrides/components/_alerts.scss";
+// @import "overrides/components/_progress-bars.scss";
+// @import "overrides/components/_media.scss";
+// @import "overrides/components/_list-group.scss";
+// @import "overrides/components/_panels.scss";
+// @import "overrides/components/_responsive-embed.scss";
+// @import "overrides/components/_wells.scss";
+// @import "overrides/components/_close.scss";
+@import "overrides/components/_slideshow.scss";
 
 // Components w/ JavaScript
 // ----------
-// @import "overrides/js_components/_carousel.scss";
 // @import "overrides/js_components/_modals.scss";
-// @import "overrides/js_components/_popovers.scss";
 // @import "overrides/js_components/_tooltip.scss";
+// @import "overrides/js_components/_popovers.scss";
+// @import "overrides/js_components/_carousel.scss";
 
 // Utility classes
 // ----------
-// @import "overrides/utility/_responsive-utilities.scss";
 // @import "overrides/utility/_utilities.scss";
+// @import "overrides/utility/_responsive-utilities.scss";
 
-// Pages CSS;
+// Pages CSS
 // ----------
 // @import "overrides/pages/_foo.scss"
-// @import "overrides/pages/_homepage.scss";
-// @import "overrides/pages/_login.scss";
-// @import "overrides/pages/_sponsorships.scss";
-
 
 // Custom CSS
 // ----------
 //   Place the file in the respective folder, e.g. components or core
 // @import "overrides/components/_foo.scss"
-// @import "overrides/custom/_footer.scss";
-// @import "overrides/custom/_header.scss";
-// @import "overrides/custom/_sidebar.scss";
-// @import "overrides/custom/_sponsor-search-pages.scss";
-// @import "overrides/custom/_sponsorable-entity.scss";
-// @import "overrides/custom/_page-headers.scss";
-// @import "overrides/custom/_checkout-steps.scss";
-// @import "_HACKS.scss";

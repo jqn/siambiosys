@@ -1,13 +1,15 @@
 // Mixins
 // --------------------------------------------------
 
+//## Bootstrap Defaults
+//
+//==
+
 // Utilities
-@import "mixins/_easy-transition.scss";
-@import "mixins/_border-inset.scss";
 @import "mixins/_hide-text.scss";
+@import "mixins/_opacity.scss";
 @import "mixins/_image.scss";
 @import "mixins/_labels.scss";
-@import "mixins/_opacity.scss";
 @import "mixins/_reset-filter.scss";
 @import "mixins/_resize.scss";
 @import "mixins/_responsive-visibility.scss";
@@ -20,12 +22,11 @@
 // Components
 @import "mixins/_alerts.scss";
 @import "mixins/_buttons.scss";
-@import "mixins/_container.scss";
-@import "mixins/_forms.scss";
+@import "mixins/_panels.scss";
+@import "mixins/_pagination.scss";
 @import "mixins/_list-group.scss";
 @import "mixins/_nav-divider.scss";
-@import "mixins/_pagination.scss";
-@import "mixins/_panels.scss";
+@import "mixins/_forms.scss";
 @import "mixins/_progress-bar.scss";
 @import "mixins/_table-row.scss";
 
@@ -35,8 +36,14 @@
 @import "mixins/_gradients.scss";
 
 // Layout
-@import "mixins/_center-block.scss";
 @import "mixins/_clearfix.scss";
+@import "mixins/_center-block.scss";
+@import "mixins/_nav-vertical-align.scss";
 @import "mixins/_grid-framework.scss";
 @import "mixins/_grid.scss";
-@import "mixins/_nav-vertical-align.scss";
+
+//## Custom Mixins
+//
+//==
+
+@import "mixins/_easy-transition.scss";
