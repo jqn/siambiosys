@@ -128,7 +128,7 @@
 <?php endif; ?>
 
 <div id="main-container">
-  <div class="main-container container">
+  <div class="main-container">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside class="col-sm-3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
