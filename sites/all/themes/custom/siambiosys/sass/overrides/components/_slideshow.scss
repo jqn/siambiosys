@@ -1,0 +1,38 @@
+/*** Slideshow Page ***/
+
+.page-home {
+  // .views_slideshow_cycle_main views_slideshow_main viewsSlideshowCycle-processed {
+  //   margin-top: 40px;
+  // }
+  .flex-caption {
+    position: absolute;
+    bottom: 4%;
+    right: 0;
+    text-align: center;
+    font-size: 25px;
+    background-color: white;
+    opacity: 0.5;
+    padding: 8px 20px;
+    width: auto;
+  }
+  // .views-field-counter {
+  //   float: left;
+  //   padding: 10px 5px;
+  //   cursor: pointer;
+  //   background: url(../images/page_nav_inactive.png) top left no-repeat;
+  //   width: 20px;
+  //   &:hover {
+  //     background: url(../images/page_nav_active.png) top left no-repeat;
+  //   }
+  // }
+  // .active .views-field-counter {
+  //   background: url(../images/page_nav_active.png) top left no-repeat;
+  // }
+  // .views-content-counter {
+  //   display: none;
+  // }
+  // .views-slideshow-controls-bottom {
+  //   padding-top: 2%;
+  //   margin-left: 46%;
+  // }
+}

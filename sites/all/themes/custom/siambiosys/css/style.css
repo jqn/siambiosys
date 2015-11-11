@@ -1,0 +1,13 @@
+/*** Slideshow Page ***/
+/* line 7, ../sass/overrides/components/_slideshow.scss */
+.page-home .flex-caption {
+  position: absolute;
+  bottom: 4%;
+  right: 0;
+  text-align: center;
+  font-size: 25px;
+  background-color: white;
+  opacity: 0.5;
+  padding: 8px 20px;
+  width: auto;
+}
