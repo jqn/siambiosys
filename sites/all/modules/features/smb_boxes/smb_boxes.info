@@ -1,0 +1,15 @@
+name = smb_boxes
+core = 7.x
+package = Siambiosys
+version = 7.x-1.0-beta1
+project = smb_boxes
+dependencies[] = boxes
+dependencies[] = ctools
+features[box][] = ceramics_box
+features[box][] = comissions_box
+features[box][] = design_box
+features[box][] = images_box
+features[box][] = polymer_box
+features[ctools][] = boxes:box:1
+features[features_api][] = api:2
+project path = sites/all/modules/features

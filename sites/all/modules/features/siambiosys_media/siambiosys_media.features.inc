@@ -34,6 +34,7 @@ function siambiosys_media_image_default_styles() {
         'data' => array(
           'width' => 1120,
           'height' => 500,
+          '#imageinfo_cache_effect_callback' => 'image_scale_and_crop_effect',
         ),
         'weight' => 1,
       ),
@@ -49,6 +50,7 @@ function siambiosys_media_image_default_styles() {
         'data' => array(
           'width' => 400,
           'height' => 180,
+          '#imageinfo_cache_effect_callback' => 'image_scale_and_crop_effect',
         ),
         'weight' => 1,
       ),
@@ -64,6 +66,7 @@ function siambiosys_media_image_default_styles() {
         'data' => array(
           'width' => 650,
           'height' => 290,
+          '#imageinfo_cache_effect_callback' => 'image_scale_and_crop_effect',
         ),
         'weight' => 1,
       ),
@@ -79,6 +82,7 @@ function siambiosys_media_image_default_styles() {
         'data' => array(
           'width' => 1120,
           'height' => 500,
+          '#imageinfo_cache_effect_callback' => 'image_scale_and_crop_effect',
         ),
         'weight' => 1,
       ),
@@ -94,6 +98,7 @@ function siambiosys_media_image_default_styles() {
         'data' => array(
           'width' => 1120,
           'height' => 500,
+          '#imageinfo_cache_effect_callback' => 'image_scale_and_crop_effect',
         ),
         'weight' => 1,
       ),
@@ -109,6 +114,7 @@ function siambiosys_media_image_default_styles() {
         'data' => array(
           'width' => 1120,
           'height' => 500,
+          '#imageinfo_cache_effect_callback' => 'image_scale_and_crop_effect',
         ),
         'weight' => 1,
       ),

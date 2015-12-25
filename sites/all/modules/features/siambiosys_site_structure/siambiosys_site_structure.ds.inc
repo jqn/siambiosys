@@ -19,7 +19,7 @@ function siambiosys_site_structure_ds_field_settings_info() {
   $ds_fieldsetting->settings = array(
     'title' => array(
       'weight' => '0',
-      'label' => 'hidden',
+      'label' => 'above',
       'format' => 'default',
     ),
   );
@@ -33,7 +33,7 @@ function siambiosys_site_structure_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
     'title' => array(
-      'weight' => '0',
+      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -94,16 +94,14 @@ function siambiosys_site_structure_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'field_title',
-        1 => 'field_mentor_name',
-        2 => 'field_mentor_title',
-        3 => 'field_statement',
-        4 => 'field_doctrine',
-        5 => 'field_influence_type',
+        0 => 'field_mentor_name',
+        1 => 'field_mentor_title',
+        2 => 'field_statement',
+        3 => 'field_doctrine',
+        4 => 'field_influence_type',
       ),
     ),
     'fields' => array(
-      'field_title' => 'ds_content',
       'field_mentor_name' => 'ds_content',
       'field_mentor_title' => 'ds_content',
       'field_statement' => 'ds_content',
@@ -166,27 +164,34 @@ function siambiosys_site_structure_ds_layout_settings_info() {
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'about';
   $ds_layout->view_mode = 'default';
-  $ds_layout->layout = 'ds_1col';
+  $ds_layout->layout = 'ds_2col_stacked';
   $ds_layout->settings = array(
     'regions' => array(
-      'ds_content' => array(
+      'left' => array(
         0 => 'field_about_image',
+      ),
+      'right' => array(
         1 => 'title',
         2 => 'field_artist_statement',
         3 => 'body',
+      ),
+      'footer' => array(
         4 => 'field_acknowledgements',
       ),
     ),
     'fields' => array(
-      'field_about_image' => 'ds_content',
-      'title' => 'ds_content',
-      'field_artist_statement' => 'ds_content',
-      'body' => 'ds_content',
-      'field_acknowledgements' => 'ds_content',
+      'field_about_image' => 'left',
+      'title' => 'right',
+      'field_artist_statement' => 'right',
+      'body' => 'right',
+      'field_acknowledgements' => 'footer',
     ),
     'classes' => array(),
     'wrappers' => array(
-      'ds_content' => 'div',
+      'header' => 'div',
+      'left' => 'div',
+      'right' => 'div',
+      'footer' => 'div',
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',
@@ -340,18 +345,18 @@ function siambiosys_site_structure_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'title',
-        1 => 'field_news_image',
-        2 => 'body',
-        3 => 'field_news_video',
+        0 => 'field_news_image',
+        1 => 'field_news_video',
+        2 => 'title',
+        3 => 'body',
         4 => 'links',
       ),
     ),
     'fields' => array(
-      'title' => 'ds_content',
       'field_news_image' => 'ds_content',
-      'body' => 'ds_content',
       'field_news_video' => 'ds_content',
+      'title' => 'ds_content',
+      'body' => 'ds_content',
       'links' => 'ds_content',
     ),
     'classes' => array(),
@@ -424,9 +429,10 @@ function siambiosys_site_structure_ds_layout_settings_info() {
         2 => 'body',
         3 => 'field_catalog_category',
         4 => 'field_add_to_slideshow',
+        5 => 'field_post_gallery',
       ),
       'hidden' => array(
-        5 => '_add_existing_field',
+        6 => '_add_existing_field',
       ),
     ),
     'fields' => array(
@@ -435,6 +441,7 @@ function siambiosys_site_structure_ds_layout_settings_info() {
       'body' => 'ds_content',
       'field_catalog_category' => 'ds_content',
       'field_add_to_slideshow' => 'ds_content',
+      'field_post_gallery' => 'ds_content',
       '_add_existing_field' => 'hidden',
     ),
     'classes' => array(),

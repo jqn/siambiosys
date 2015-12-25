@@ -32,7 +32,7 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Acknowledgements/Inspiration (field_acknowledgements) */
+  /* Relationship: Content: Mentors (field_acknowledgements) */
   $handler->display->display_options['relationships']['field_acknowledgements_value']['id'] = 'field_acknowledgements_value';
   $handler->display->display_options['relationships']['field_acknowledgements_value']['table'] = 'field_data_field_acknowledgements';
   $handler->display->display_options['relationships']['field_acknowledgements_value']['field'] = 'field_acknowledgements_value';
@@ -76,7 +76,7 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['fields']['field_title']['label'] = 'Mentors';
   $handler->display->display_options['fields']['field_title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_title']['type'] = 'text_plain';
-  /* Field: Content: Acknowledgements/Inspiration */
+  /* Field: Content: Mentors */
   $handler->display->display_options['fields']['field_acknowledgements']['id'] = 'field_acknowledgements';
   $handler->display->display_options['fields']['field_acknowledgements']['table'] = 'field_data_field_acknowledgements';
   $handler->display->display_options['fields']['field_acknowledgements']['field'] = 'field_acknowledgements';
@@ -210,7 +210,31 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Content: Referenced products */
+  $handler->display->display_options['relationships']['field_product_product_id']['id'] = 'field_product_product_id';
+  $handler->display->display_options['relationships']['field_product_product_id']['table'] = 'field_data_field_product';
+  $handler->display->display_options['relationships']['field_product_product_id']['field'] = 'field_product_product_id';
+  $handler->display->display_options['relationships']['field_product_product_id']['label'] = 'field_product';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  /* Field: Commerce Product: Product Image */
+  $handler->display->display_options['fields']['field_product_image']['id'] = 'field_product_image';
+  $handler->display->display_options['fields']['field_product_image']['table'] = 'field_data_field_product_image';
+  $handler->display->display_options['fields']['field_product_image']['field'] = 'field_product_image';
+  $handler->display->display_options['fields']['field_product_image']['relationship'] = 'field_product_product_id';
+  $handler->display->display_options['fields']['field_product_image']['label'] = '';
+  $handler->display->display_options['fields']['field_product_image']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_product_image']['alter']['path'] = 'node/[nid]';
+  $handler->display->display_options['fields']['field_product_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_product_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_product_image']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => '',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -218,13 +242,13 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Add to Gallery (field_post_gallery) */
+  $handler->display->display_options['filters']['field_post_gallery_value']['id'] = 'field_post_gallery_value';
+  $handler->display->display_options['filters']['field_post_gallery_value']['table'] = 'field_data_field_post_gallery';
+  $handler->display->display_options['filters']['field_post_gallery_value']['field'] = 'field_post_gallery_value';
+  $handler->display->display_options['filters']['field_post_gallery_value']['value'] = array(
+    1 => '1',
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -360,9 +384,31 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['view_mode'] = 'full';
-  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Video */
+  $handler->display->display_options['fields']['field_news_video']['id'] = 'field_news_video';
+  $handler->display->display_options['fields']['field_news_video']['table'] = 'field_data_field_news_video';
+  $handler->display->display_options['fields']['field_news_video']['field'] = 'field_news_video';
+  $handler->display->display_options['fields']['field_news_video']['label'] = '';
+  $handler->display->display_options['fields']['field_news_video']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_news_video']['click_sort_column'] = 'video_url';
+  $handler->display->display_options['fields']['field_news_video']['type'] = 'video_embed_field_thumbnail';
+  $handler->display->display_options['fields']['field_news_video']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_news_video']['delta_offset'] = '0';
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_news_image']['id'] = 'field_news_image';
+  $handler->display->display_options['fields']['field_news_image']['table'] = 'field_data_field_news_image';
+  $handler->display->display_options['fields']['field_news_image']['field'] = 'field_news_image';
+  $handler->display->display_options['fields']['field_news_image']['label'] = '';
+  $handler->display->display_options['fields']['field_news_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_news_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_news_image']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => '',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -370,6 +416,16 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '600',
+  );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -434,7 +490,6 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Global: View result counter */
   $handler->display->display_options['fields']['counter']['id'] = 'counter';
   $handler->display->display_options['fields']['counter']['table'] = 'views';
@@ -454,7 +509,7 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['fields']['field_product_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_product_image']['settings'] = array(
     'image_style' => 'banner_style',
-    'image_link' => 'content',
+    'image_link' => '',
   );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
@@ -499,7 +554,6 @@ function siambiosys_site_views_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Store';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -508,9 +562,31 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['view_mode'] = 'full';
-  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Content: Referenced products */
+  $handler->display->display_options['relationships']['field_product_product_id']['id'] = 'field_product_product_id';
+  $handler->display->display_options['relationships']['field_product_product_id']['table'] = 'field_data_field_product';
+  $handler->display->display_options['relationships']['field_product_product_id']['field'] = 'field_product_product_id';
+  $handler->display->display_options['relationships']['field_product_product_id']['label'] = 'field_product';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  /* Field: Commerce Product: Product Image */
+  $handler->display->display_options['fields']['field_product_image']['id'] = 'field_product_image';
+  $handler->display->display_options['fields']['field_product_image']['table'] = 'field_data_field_product_image';
+  $handler->display->display_options['fields']['field_product_image']['field'] = 'field_product_image';
+  $handler->display->display_options['fields']['field_product_image']['relationship'] = 'field_product_product_id';
+  $handler->display->display_options['fields']['field_product_image']['label'] = '';
+  $handler->display->display_options['fields']['field_product_image']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_product_image']['alter']['path'] = 'node/[nid]';
+  $handler->display->display_options['fields']['field_product_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_product_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_product_image']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => '',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -518,6 +594,18 @@ function siambiosys_site_views_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Commerce Product: Add to Cart form */
+  $handler->display->display_options['fields']['add_to_cart_form']['id'] = 'add_to_cart_form';
+  $handler->display->display_options['fields']['add_to_cart_form']['table'] = 'views_entity_commerce_product';
+  $handler->display->display_options['fields']['add_to_cart_form']['field'] = 'add_to_cart_form';
+  $handler->display->display_options['fields']['add_to_cart_form']['relationship'] = 'field_product_product_id';
+  $handler->display->display_options['fields']['add_to_cart_form']['label'] = '';
+  $handler->display->display_options['fields']['add_to_cart_form']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['add_to_cart_form']['show_quantity'] = 0;
+  $handler->display->display_options['fields']['add_to_cart_form']['default_quantity'] = '1';
+  $handler->display->display_options['fields']['add_to_cart_form']['combine'] = 1;
+  $handler->display->display_options['fields']['add_to_cart_form']['display_path'] = 0;
+  $handler->display->display_options['fields']['add_to_cart_form']['line_item_type'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -538,8 +626,9 @@ function siambiosys_site_views_views_default_views() {
     'product_display' => 'product_display',
   );
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
+  /* Display: Store Landing Page */
+  $handler = $view->new_display('page', 'Store Landing Page', 'page');
+  $handler->display->display_options['display_description'] = 'Displays all available products';
   $handler->display->display_options['path'] = 'store';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'STORE';

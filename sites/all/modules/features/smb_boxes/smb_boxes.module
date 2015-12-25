@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the smb_boxes feature.
+ */
+
+include_once 'smb_boxes.features.inc';
