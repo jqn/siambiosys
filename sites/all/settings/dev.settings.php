@@ -6,7 +6,7 @@ global $conf;
 
 # Environment Indicator
 $conf['environment_indicator_overwritten_name'] = 'Environment: DEV';
-$conf['environment_indicator_overwritten_color'] = '#2c9c3a';
+$conf['environment_indicator_overwritten_color'] = '#FF8F32';
 $conf['environment_indicator_overwrite'] = TRUE;
 $conf['environment_indicator_overwritten_position'] = 'top';
 $conf['environment_indicator_overwritten_fixed'] = FALSE;
